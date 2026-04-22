@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selenium Python Automation Tester Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: #1e2430;
+    --accent-green: #00e5a0;
+    --accent-blue: #3b9eff;
+    --accent-yellow: #f5c518;
+    --accent-red: #ff5c5c;
+    --accent-purple: #a78bfa;
+    --text: #e2e8f0;
+    --text-muted: #6b7a99;
+    --text-dim: #3a4560;
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 60px 0 50px;
+    position: relative;
+  }
+
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .header h1 {
+    font-family: var(--font-head);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-green) 60%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .header-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .stat-pill span {
+    color: var(--accent-green);
+    font-weight: 600;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 32px;
+    background: var(--surface);
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  .nav-tab.active {
+    background: var(--surface2);
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+
+  .nav-tab:hover:not(.active) {
+    color: var(--text);
+    background: rgba(255,255,255,0.04);
+  }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* COURSE CARDS */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-color, var(--accent-green));
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .course-card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+  .course-card:hover::before { opacity: 1; }
+
+  .card-rank {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--card-color, var(--accent-green));
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .card-title {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .card-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-free { color: var(--accent-green); border-color: rgba(0,229,160,0.3); background: rgba(0,229,160,0.06); }
+  .tag-paid { color: var(--accent-yellow); border-color: rgba(245,197,24,0.3); background: rgba(245,197,24,0.06); }
+  .tag-youtube { color: var(--accent-blue); border-color: rgba(59,158,255,0.3); background: rgba(59,158,255,0.06); }
+  .tag-hours { color: var(--text-muted); border-color: var(--border); }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--card-color, var(--accent-green));
+    font-size: 12px;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .card-link:hover { gap: 10px; }
+
+  /* PROJECTS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.2s;
+  }
+
+  .project-card:hover { border-color: rgba(255,255,255,0.1); }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .project-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .project-info { flex: 1; }
+  .project-title {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+  .project-subtitle { font-size: 11px; color: var(--text-muted); }
+
+  .project-toggle {
+    color: var(--text-dim);
+    font-size: 18px;
+    transition: transform 0.3s;
+    font-style: normal;
+  }
+
+  .project-card.open .project-toggle { transform: rotate(180deg); }
+
+  .project-body {
+    display: none;
+    padding: 0 24px 20px 76px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+
+  .project-card.open .project-body { display: block; padding-top: 16px; }
+
+  .project-body ul { margin-left: 16px; margin-top: 8px; }
+  .project-body li { margin-bottom: 4px; }
+  .project-body strong { color: var(--text); }
+
+  .impact-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: rgba(0,229,160,0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(0,229,160,0.2);
+  }
+
+  /* ROADMAP TIERS */
+  .tiers-container { display: flex; flex-direction: column; gap: 16px; }
+
+  .tier-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .tier-header:hover { background: rgba(255,255,255,0.02); }
+
+  .tier-badge {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    flex-shrink: 0;
+  }
+
+  .tier-info { flex: 1; }
+  .tier-title {
+    font-family: var(--font-head);
+    font-size: 17px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .tier-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
+  .tier-toggle {
+    color: var(--text-dim);
+    font-size: 20px;
+    transition: transform 0.3s;
+    font-style: normal;
+  }
+
+  .tier-card.open .tier-toggle { transform: rotate(180deg); }
+
+  .tier-body { display: none; padding: 0 24px 24px; }
+  .tier-card.open .tier-body { display: block; }
+
+  .skill-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+
+  .skill-name {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .skill-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .skill-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .skill-topic {
+    font-size: 10px;
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-muted);
+  }
+
+  .skill-resource {
+    font-size: 11px;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+  }
+
+  .skill-resource:hover { color: #7dc3ff; }
+
+  /* MARKET SECTION */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .market-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+  }
+
+  .market-num {
+    font-family: var(--font-head);
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .market-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .strategy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .strategy-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+
+  .strategy-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.2);
+    color: var(--accent-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .strategy-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  .strategy-text strong { color: var(--text); }
+
+  /* PROGRESS TRACKER */
+  .progress-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+
+  .progress-title {
+    font-family: var(--font-head);
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .progress-sub { font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+
+  .progress-bar-wrap {
+    background: var(--surface2);
+    border-radius: 100px;
+    height: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+    transition: width 0.5s ease;
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .checklist { display: flex; flex-direction: column; gap: 8px; }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+
+  .checklist-item:hover { border-color: rgba(255,255,255,0.08); }
+  .checklist-item.checked { background: rgba(0,229,160,0.05); border-color: rgba(0,229,160,0.2); }
+
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid var(--text-dim);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+
+  .checklist-item.checked .check-box {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+  }
+
+  .check-box::after {
+    content: '✓';
+    font-size: 11px;
+    color: #000;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .checklist-item.checked .check-box::after { opacity: 1; }
+
+  .check-text { font-size: 12px; line-height: 1.6; }
+  .check-label { color: var(--text); }
+  .check-sub { color: var(--text-muted); font-size: 11px; margin-top: 2px; }
+  .checklist-item.checked .check-label { color: var(--text-muted); text-decoration: line-through; }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 11px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .header { padding: 40px 0 30px; }
+    .header-stats { gap: 10px; }
+    .stat-pill { font-size: 11px; padding: 6px 14px; }
+    .project-body { padding-left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <span class="header-tag">// Career Roadmap 2025–2026</span>
+    <h1>Selenium Python<br>Automation Tester</h1>
+    <p class="header-sub">Complete guide · Courses · Projects · Tiered Learning Path · Market Reality</p>
+    <div class="header-stats">
+      <div class="stat-pill">Market growth <span>+30% by 2026</span></div>
+      <div class="stat-pill">Fresher CTC <span>₹3.5–6 LPA</span></div>
+      <div class="stat-pill">Senior CTC <span>₹18–30 LPA</span></div>
+      <div class="stat-pill">Tiers <span>4 Phases</span></div>
+    </div>
+  </div>
+
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchTab('howto', this)">⚡ How to Use</button>
+    <button class="nav-tab" onclick="switchTab('courses', this)">📚 Courses</button>
+    <button class="nav-tab" onclick="switchTab('roadmap', this)">🗺 Roadmap</button>
+    <button class="nav-tab" onclick="switchTab('projects', this)">🚀 Projects</button>
+    <button class="nav-tab" onclick="switchTab('market', this)">📊 Market</button>
+    <button class="nav-tab" onclick="switchTab('tracker', this)">✅ Tracker</button>
+  </div>
+
+  <!-- ===== HOW TO USE ===== -->
+  <div id="howto" class="section active">
+
+    <!-- THE BIG ANSWER -->
+    <div style="background: var(--surface); border: 1px solid rgba(0,229,160,0.35); border-radius: 16px; padding: 32px; margin-bottom: 20px; position: relative; overflow: hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));"></div>
+      <div style="font-size:11px; letter-spacing:3px; color:var(--accent-green); margin-bottom:14px; text-transform:uppercase;">// The Direct Answer</div>
+      <div style="font-family: var(--font-head); font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: #fff; line-height: 1.3; margin-bottom: 20px;">
+        Follow the <span style="color:var(--accent-green);">Roadmap</span> to know <em>what</em> to learn.<br>
+        Use the <span style="color:var(--accent-blue);">Courses</span> to know <em>where</em> to learn it.
+      </div>
+      <div style="font-size: 13px; color: var(--text-muted); line-height: 1.9; max-width: 700px;">
+        They are two halves of the same plan — not alternatives. The Roadmap is your syllabus. The Courses are your textbooks. You cannot use one without the other.
+        <br><br>
+        <span style="color: var(--text);">Think of it like this:</span> the Roadmap tells you "Learn POM in Month 3." The Courses tab tells you the exact playlist video on Naveen AutomationLabs to watch for it. Every single topic in the Roadmap has one and only one linked resource. There is no guesswork.
+      </div>
+    </div>
+
+    <!-- TWO COLUMN COMPARISON -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+
+      <div style="background: var(--surface); border: 1px solid rgba(0,229,160,0.2); border-radius: 14px; padding: 24px;">
+        <div style="font-size:10px; letter-spacing:3px; color:var(--accent-green); margin-bottom:12px; text-transform:uppercase;">🗺 Roadmap Tab</div>
+        <div style="font-family: var(--font-head); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px;">Your Study Plan</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.9;">
+          Tells you <strong style="color:var(--text)">what</strong> to learn, in what order, and why each topic matters for getting hired.<br><br>
+          Divided into 4 tiers across 7 months. Each tier has skill blocks with topics covered and the one resource to use for it.
+        </div>
+        <div style="margin-top: 16px; font-size: 11px; color: var(--accent-green); background: rgba(0,229,160,0.07); border: 1px solid rgba(0,229,160,0.15); border-radius: 8px; padding: 10px 14px;">
+          ✓ Open this first.<br>
+          ✓ Work top-to-bottom, tier by tier.<br>
+          ✓ Each skill block has a direct link to its resource.
+        </div>
+      </div>
+
+      <div style="background: var(--surface); border: 1px solid rgba(59,158,255,0.2); border-radius: 14px; padding: 24px;">
+        <div style="font-size:10px; letter-spacing:3px; color:var(--accent-blue); margin-bottom:12px; text-transform:uppercase;">📚 Courses Tab</div>
+        <div style="font-family: var(--font-head); font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px;">Your Resource Library</div>
+        <div style="font-size: 12px; color: var(--text-muted); line-height: 1.9;">
+          Lists all the courses/channels used across the roadmap, which tiers each one covers, and whether you need them or they are supplementary.<br><br>
+          Useful for understanding the full picture before you start.
+        </div>
+        <div style="margin-top: 16px; font-size: 11px; color: var(--accent-blue); background: rgba(59,158,255,0.07); border: 1px solid rgba(59,158,255,0.15); border-radius: 8px; padding: 10px 14px;">
+          ✓ Read once to understand the landscape.<br>
+          ✓ You don't pick courses — the Roadmap picks them for you.<br>
+          ✓ Come back here only if a link breaks.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STEP BY STEP HOW TO START -->
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 20px;">
+      <div style="font-size:10px; letter-spacing:3px; color:var(--accent-yellow); margin-bottom:16px; text-transform:uppercase;">⚡ Exactly How to Start — Step by Step</div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">1</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">Read this tab once</strong> — understand that Roadmap = syllabus, Courses = textbooks. They work together, not separately.</div>
+        </div>
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">2</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">Decide your path:</strong> Free path (Naveen + individual videos) or Paid shortcut (Udemy ₹299–499 covers Tier 1+2 in one place). See the Courses tab for details.</div>
+        </div>
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">3</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">Go to the Roadmap tab → open Tier 1.</strong> Start with Python for Testers. Click the resource link inside that skill block. That is your first video to watch.</div>
+        </div>
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">4</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">Complete each skill block before moving to the next.</strong> Don't jump tiers. The order is intentional — each skill builds on the previous one.</div>
+        </div>
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">5</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">After finishing each tier, build the corresponding project</strong> from the Projects tab. Don't wait until the end — projects reinforce what you just learned.</div>
+        </div>
+
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="min-width:28px; height:28px; border-radius:6px; background:rgba(0,229,160,0.12); border:1px solid rgba(0,229,160,0.25); color:var(--accent-green); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">6</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.7; padding-top:4px;"><strong style="color:var(--text);">Track everything in the Tracker tab.</strong> Tick off each skill and project as you complete it. The progress bar is your north star.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TIER → PROJECT MAPPING -->
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 20px;">
+      <div style="font-size:10px; letter-spacing:3px; color:var(--accent-purple); margin-bottom:16px; text-transform:uppercase;">🔗 When to Build Each Project</div>
+      <div style="display:flex; flex-direction:column; gap: 8px;">
+
+        <div style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:12px;">
+          <span style="color:var(--accent-green); font-weight:700; min-width:80px;">After Tier 2</span>
+          <span style="color:var(--text-dim);">→</span>
+          <span style="color:var(--text-muted);">Build <strong style="color:var(--text)">Project 1</strong> (E-Commerce E2E) + <strong style="color:var(--text)">Project 3</strong> (Data-Driven Excel)</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:12px;">
+          <span style="color:var(--accent-blue); font-weight:700; min-width:80px;">After Tier 3</span>
+          <span style="color:var(--text-dim);">→</span>
+          <span style="color:var(--text-muted);">Build <strong style="color:var(--text)">Project 2</strong> (Cross-Browser) + <strong style="color:var(--text)">Project 4</strong> (CI/CD Pipeline)</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; padding:12px 16px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:12px;">
+          <span style="color:var(--accent-red); font-weight:700; min-width:80px;">After Tier 4</span>
+          <span style="color:var(--text-dim);">→</span>
+          <span style="color:var(--text-muted);">Build <strong style="color:var(--text)">Project 5</strong> (AI Visual Regression)</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- QUICK REFERENCE: WHICH SOURCE COVERS WHAT -->
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 28px;">
+      <div style="font-size:10px; letter-spacing:3px; color:var(--accent-blue); margin-bottom:16px; text-transform:uppercase;">📌 Quick Reference — One Source Per Topic</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:8px;">
+
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Python Basics</span><span style="float:right; color:var(--accent-green);">Mosh (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">HTML/CSS + DevTools</span><span style="float:right; color:var(--accent-green);">Traversy Media (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Selenium WebDriver</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">PyTest</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Page Object Model</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Data-Driven Testing</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">conftest.py + Fixtures</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Allure / Reports</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Git & GitHub</span><span style="float:right; color:var(--accent-blue);">freeCodeCamp (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">CI/CD GitHub Actions</span><span style="float:right; color:var(--accent-blue);">TechWorld with Nana (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">API Testing</span><span style="float:right; color:var(--accent-green);">Naveen AutomationLabs</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">SQL Basics</span><span style="float:right; color:var(--accent-blue);">Mosh – SQL (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">SDLC / Test Planning</span><span style="float:right; color:var(--accent-yellow);">Udemy Course (Module 1)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Playwright</span><span style="float:right; color:var(--accent-blue);">Test Automation Univ.</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">AI-Augmented Testing</span><span style="float:right; color:var(--accent-blue);">Test Automation Univ.</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">Performance Testing</span><span style="float:right; color:var(--accent-blue);">freeCodeCamp (YT)</span>
+        </div>
+        <div style="padding:10px 14px; background:var(--surface2); border:1px solid var(--border); border-radius:8px; font-size:11px;">
+          <span style="color:var(--text-muted);">SDET Mindset</span><span style="float:right; color:var(--accent-blue);">Test Automation Univ.</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== COURSES ===== -->
+  <div id="courses" class="section">
+
+    <div style="background:rgba(0,229,160,0.06); border:1px solid rgba(0,229,160,0.2); border-radius:12px; padding:16px 20px; margin-bottom:24px; font-size:12px; color:var(--text-muted); line-height:1.8;">
+      <span style="color:var(--accent-green); font-weight:600;">Reminder →</span> The Roadmap is your study plan. The Courses listed here are the resources the Roadmap sends you to. You don't pick a course and follow it end-to-end independently — you follow the Roadmap and it tells you which course/video to open for each topic.
+    </div>
+
+    <div class="cards-grid">
+
+      <div class="course-card" style="--card-color: #00e5a0">
+        <span class="card-rank">🥇 PRIMARY · TIERS 1 & 2 + API</span>
+        <div class="card-title">Naveen AutomationLabs</div>
+        <div class="card-desc">Your main learning resource. Covers Selenium WebDriver, PyTest, Page Object Model, data-driven testing, conftest.py/fixtures, Allure reports, and API/REST testing. All free on YouTube. Follow the Selenium Python playlist in order — do not skip videos.</div>
+        <div style="font-size:11px; color:var(--accent-green); background:rgba(0,229,160,0.07); border:1px solid rgba(0,229,160,0.15); border-radius:6px; padding:8px 12px; margin-bottom:14px; line-height:1.7;">
+          <strong>USE THIS IF:</strong> you want the free path. This single channel covers ~70% of the entire roadmap. Start here after Mosh (Python) and Traversy (HTML).
+        </div>
+        <div class="card-meta">
+          <span class="tag tag-free">FREE</span>
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-hours">Tier 1 + 2 + API</span>
+        </div>
+        <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="card-link" target="_blank">Watch Selenium Python Playlist →</a>
+      </div>
+
+      <div class="course-card" style="--card-color: #3b9eff">
+        <span class="card-rank">SUPPLEMENTARY · TIER 4 (AI + PLAYWRIGHT)</span>
+        <div class="card-title">Test Automation University (TAU)</div>
+        <div class="card-desc">Used for three Tier 4 topics: Playwright with Python, AI-Augmented Testing, and SDET mindset courses. Free, industry-certified, and run by Applitools. You will come here only after completing Tiers 1–3.</div>
+        <div style="font-size:11px; color:var(--accent-blue); background:rgba(59,158,255,0.07); border:1px solid rgba(59,158,255,0.15); border-radius:6px; padding:8px 12px; margin-bottom:14px; line-height:1.7;">
+          <strong>USE THIS IF:</strong> you have completed Tier 3 and are ready for Tier 4. Do not start here — it has no Selenium basics.
+        </div>
+        <div class="card-meta">
+          <span class="tag tag-free">FREE</span>
+          <span class="tag tag-hours">Tier 4 only</span>
+        </div>
+        <a href="https://testautomationu.applitools.com/selenium-webdriver-python-tutorial/" class="card-link" target="_blank">Open TAU →</a>
+      </div>
+
+      <div class="course-card" style="--card-color: #f5c518">
+        <span class="card-rank">PAID SHORTCUT · TIERS 1 & 2 IN ONE PLACE</span>
+        <div class="card-title">Udemy: Selenium Python & PyTest</div>
+        <div class="card-desc">46+ hours covering Tier 1 + Tier 2 in one structured course — locators, POM, data-driven, real-time projects, framework design. Module 1 also covers SDLC and testing theory (used for the Tier 3 SDLC topic). Buy during flash sales only.</div>
+        <div style="font-size:11px; color:var(--accent-yellow); background:rgba(245,197,24,0.07); border:1px solid rgba(245,197,24,0.15); border-radius:6px; padding:8px 12px; margin-bottom:14px; line-height:1.7;">
+          <strong>USE THIS IF:</strong> you prefer one paid structured course over multiple YouTube playlists. It replaces Naveen AutomationLabs for Tiers 1–2. Pick one or the other — not both.
+        </div>
+        <div class="card-meta">
+          <span class="tag tag-paid">~₹299–499 on sale</span>
+          <span class="tag tag-hours">46 hrs · Tier 1 + 2</span>
+        </div>
+        <a href="https://www.udemy.com/course/learn-selenium-with-python-d/" class="card-link" target="_blank">View on Udemy →</a>
+      </div>
+
+      <div class="course-card" style="--card-color: #a78bfa">
+        <span class="card-rank">PREREQUISITE · COMPLETE BEFORE TIER 1</span>
+        <div class="card-title">Mosh – Python for Beginners</div>
+        <div class="card-desc">Complete this before touching Selenium. Covers variables, OOP, file handling, and exception handling — the Python foundation every automation tester needs. Also used for the SQL topic in Tier 3 (separate Mosh SQL video).</div>
+        <div style="font-size:11px; color:var(--accent-purple); background:rgba(167,139,250,0.07); border:1px solid rgba(167,139,250,0.15); border-radius:6px; padding:8px 12px; margin-bottom:14px; line-height:1.7;">
+          <strong>USE THIS IF:</strong> you are new to Python. This is not optional — skip it and you will struggle with every Selenium topic that follows.
+        </div>
+        <div class="card-meta">
+          <span class="tag tag-free">FREE</span>
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-hours">6 hrs · Pre-Tier 1</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" class="card-link" target="_blank">Watch on YouTube →</a>
+      </div>
+
+      <div class="course-card" style="--card-color: #ff5c5c">
+        <span class="card-rank">SUPPLEMENTARY · TIERS 2, 3 & 4</span>
+        <div class="card-title">freeCodeCamp + TechWorld with Nana</div>
+        <div class="card-desc">Three specific standalone videos used across the roadmap — Git & GitHub for Beginners (Tier 2), Mosh SQL Tutorial (Tier 3), Locust Load Testing (Tier 4), and TechWorld with Nana's GitHub Actions course (Tier 3). You will be sent here directly from Roadmap skill blocks.</div>
+        <div style="font-size:11px; color:var(--accent-red); background:rgba(255,92,92,0.07); border:1px solid rgba(255,92,92,0.15); border-radius:6px; padding:8px 12px; margin-bottom:14px; line-height:1.7;">
+          <strong>USE THIS IF:</strong> the Roadmap skill block for Git, SQL, CI/CD, or Performance Testing sends you here. You don't browse these channels — you watch specific linked videos only.
+        </div>
+        <div class="card-meta">
+          <span class="tag tag-free">FREE</span>
+          <span class="tag tag-youtube">YouTube</span>
+          <span class="tag tag-hours">4 specific videos</span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" class="card-link" target="_blank">Git Video →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PROJECTS ===== -->
+  <div id="projects" class="section">
+    <div class="projects-list">
+
+      <div class="project-card" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-num" style="background:rgba(0,229,160,0.1); color: var(--accent-green);">01</div>
+          <div class="project-info">
+            <div class="project-title">E-Commerce End-to-End Test Suite</div>
+            <div class="project-subtitle">OpenCart / DemoBlaze · POM + PyTest + HTML Reports</div>
+          </div>
+          <i class="project-toggle">↓</i>
+        </div>
+        <div class="project-body">
+          <strong>What you build:</strong> Automate the full user journey — register → search → add to cart → checkout → order confirmation.
+          <ul>
+            <li>Use Page Object Model for all pages</li>
+            <li>pytest fixtures for browser setup/teardown</li>
+            <li>pytest-html or Allure for reports with screenshots on failure</li>
+            <li>Parameterized tests with different user accounts</li>
+          </ul>
+          <div class="impact-tag">🎯 Most asked-about project in QA interviews</div>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-num" style="background:rgba(59,158,255,0.1); color: var(--accent-blue);">02</div>
+          <div class="project-info">
+            <div class="project-title">Cross-Browser Regression Framework</div>
+            <div class="project-subtitle">Selenium Grid / BrowserStack · Chrome, Firefox, Edge</div>
+          </div>
+          <i class="project-toggle">↓</i>
+        </div>
+        <div class="project-body">
+          <strong>What you build:</strong> A configurable framework that runs identical tests across multiple browsers using a command-line parameter.
+          <ul>
+            <li>pytest.ini or conftest.py to accept browser as CLI argument</li>
+            <li>Selenium Grid setup for parallel execution</li>
+            <li>BrowserStack free tier integration</li>
+            <li>Test result matrix showing pass/fail per browser</li>
+          </ul>
+          <div class="impact-tag">🎯 Shows architectural thinking — rare for freshers</div>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-num" style="background:rgba(245,197,24,0.1); color: var(--accent-yellow);">03</div>
+          <div class="project-info">
+            <div class="project-title">Data-Driven Testing with Excel/CSV</div>
+            <div class="project-subtitle">openpyxl + pandas · Login & Form Automation</div>
+          </div>
+          <i class="project-toggle">↓</i>
+        </div>
+        <div class="project-body">
+          <strong>What you build:</strong> Feed test data from Excel/CSV to run 50+ login combinations automatically.
+          <ul>
+            <li>openpyxl to read Excel sheets as test data</li>
+            <li>pytest parametrize with CSV/Excel rows</li>
+            <li>Tests for valid, invalid, boundary case credentials</li>
+            <li>Auto-generate test report with pass/fail per row</li>
+          </ul>
+          <div class="impact-tag">🎯 Very common in banking and ERP product companies</div>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-num" style="background:rgba(167,139,250,0.1); color: var(--accent-purple);">04</div>
+          <div class="project-info">
+            <div class="project-title">CI/CD Integrated Test Pipeline</div>
+            <div class="project-subtitle">GitHub Actions · Auto-run on every push</div>
+          </div>
+          <i class="project-toggle">↓</i>
+        </div>
+        <div class="project-body">
+          <strong>What you build:</strong> Hook any of your existing projects into GitHub Actions for continuous testing.
+          <ul>
+            <li>.github/workflows/test.yml that installs deps and runs pytest</li>
+            <li>Headless Chrome configuration for CI environment</li>
+            <li>Allure or pytest-html reports as pipeline artifacts</li>
+            <li>Badge in README showing test status</li>
+          </ul>
+          <div class="impact-tag">🎯 Differentiates you from 90% of freshers — shows DevOps awareness</div>
+        </div>
+      </div>
+
+      <div class="project-card" onclick="toggleProject(this)">
+        <div class="project-header">
+          <div class="project-num" style="background:rgba(255,92,92,0.1); color: var(--accent-red);">05</div>
+          <div class="project-info">
+            <div class="project-title">AI-Powered Visual Regression Tester</div>
+            <div class="project-subtitle">Pillow + pixel-diff · Applitools Eyes Free Tier</div>
+          </div>
+          <i class="project-toggle">↓</i>
+        </div>
+        <div class="project-body">
+          <strong>What you build:</strong> Capture screenshots before/after a UI deploy and automatically flag visual regressions.
+          <ul>
+            <li>Selenium for baseline screenshot capture</li>
+            <li>Pillow library for pixel-diff comparison</li>
+            <li>Applitools Eyes free tier integration</li>
+            <li>HTML report showing visual diff highlights</li>
+          </ul>
+          <div class="impact-tag">🎯 Future-relevant + impressive — shows AI testing awareness</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ROADMAP ===== -->
+  <div id="roadmap" class="section">
+    <div class="tiers-container">
+
+      <!-- TIER 1 -->
+      <div class="tier-card open">
+        <div class="tier-header" onclick="toggleTier(this.parentElement)">
+          <div class="tier-badge" style="background:rgba(0,229,160,0.12); color:var(--accent-green); border: 1px solid rgba(0,229,160,0.25);">TIER 1</div>
+          <div class="tier-info">
+            <div class="tier-title">Foundation</div>
+            <div class="tier-meta">Months 1–2 · Goal: Get your first tests running</div>
+            <div style="margin-top:6px; font-size:10px; color:var(--accent-green);">Resources: Mosh (Python) · Traversy (HTML) · Naveen AutomationLabs (Selenium + PyTest)</div>
+          </div>
+          <i class="tier-toggle">↑</i>
+        </div>
+        <div class="tier-body">
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-green)"></span>Python for Testers</div>
+            <div class="skill-desc">You don't need data science Python — you need programmer Python. Focus on writing clean, readable scripts that work reliably.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Variables & loops</span>
+              <span class="skill-topic">Functions</span>
+              <span class="skill-topic">OOP basics (classes, inheritance)</span>
+              <span class="skill-topic">File handling</span>
+              <span class="skill-topic">Exception handling</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" class="skill-resource" target="_blank">▶ Mosh – Python for Beginners · youtube.com · Free · 6 hrs</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-blue)"></span>HTML & CSS + Browser DevTools</div>
+            <div class="skill-desc">You can't write locators if you don't understand the DOM. Learn to inspect elements using Chrome DevTools on real websites before touching Selenium.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Tags, attributes, class, ID</span>
+              <span class="skill-topic">DOM structure</span>
+              <span class="skill-topic">Chrome DevTools Inspector</span>
+              <span class="skill-topic">CSS specificity basics</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" class="skill-resource" target="_blank">▶ Traversy Media – HTML Crash Course · youtube.com · Free · 1 hr</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-yellow)"></span>Selenium WebDriver Core</div>
+            <div class="skill-desc">Install Selenium 4.x, set up ChromeDriver, understand the WebDriver protocol. Practice on automationexercise.com or demoqa.com.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">find_element / find_elements</span>
+              <span class="skill-topic">XPath (absolute vs relative)</span>
+              <span class="skill-topic">CSS Selectors</span>
+              <span class="skill-topic">ID, Name, LinkText locators</span>
+              <span class="skill-topic">send_keys / click / get</span>
+              <span class="skill-topic">implicitly_wait</span>
+              <span class="skill-topic">WebDriverWait + Expected Conditions</span>
+              <span class="skill-topic">Alerts, iFrames, windows/tabs</span>
+              <span class="skill-topic">Screenshots</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – Selenium Python Full Playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-purple)"></span>PyTest Basics</div>
+            <div class="skill-desc">Write test functions with assert, use fixtures, markers, and generate HTML reports. This is your test runner for every project.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">assert statements</span>
+              <span class="skill-topic">@pytest.fixture</span>
+              <span class="skill-topic">@pytest.mark</span>
+              <span class="skill-topic">@pytest.mark.parametrize</span>
+              <span class="skill-topic">pytest-html reports</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – PyTest series within Selenium playlist · youtube.com · Free</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIER 2 -->
+      <div class="tier-card">
+        <div class="tier-header" onclick="toggleTier(this.parentElement)">
+          <div class="tier-badge" style="background:rgba(59,158,255,0.12); color:var(--accent-blue); border: 1px solid rgba(59,158,255,0.25);">TIER 2</div>
+          <div class="tier-info">
+            <div class="tier-title">Framework Builder</div>
+            <div class="tier-meta">Months 3–4 · Goal: Build something hireable</div>
+            <div style="margin-top:6px; font-size:10px; color:var(--accent-blue);">Resources: Naveen AutomationLabs (POM, fixtures, reports, data-driven) · freeCodeCamp (Git)</div>
+          </div>
+          <i class="tier-toggle">↓</i>
+        </div>
+        <div class="tier-body">
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-blue)"></span>Page Object Model (POM)</div>
+            <div class="skill-desc">The single most important design pattern in Selenium. Every page = a Python class. Locators live in the class, not in test files. Tests only call methods. Without POM, your code is not interview-ready.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Page class structure</span>
+              <span class="skill-topic">Locator encapsulation</span>
+              <span class="skill-topic">Method-only test calls</span>
+              <span class="skill-topic">BasePage class</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq6cHeqfsDes3pdVh3kpl74" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – Full POM in Selenium Playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-green)"></span>Data-Driven Testing</div>
+            <div class="skill-desc">Read test data from Excel, CSV, or JSON. Combine with pytest parametrize to run one test function across 20+ data rows automatically.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">openpyxl (Excel)</span>
+              <span class="skill-topic">csv module</span>
+              <span class="skill-topic">JSON test data</span>
+              <span class="skill-topic">pytest.mark.parametrize with file data</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – "Read Excel Sheet – Data Driven" video in Selenium playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-yellow)"></span>conftest.py + Fixture Architecture</div>
+            <div class="skill-desc">Learn how conftest.py works as a global fixture file. Build a driver fixture that handles browser setup/teardown. Add scope control for efficient parallel testing.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">conftest.py structure</span>
+              <span class="skill-topic">Fixture scopes: function, class, session</span>
+              <span class="skill-topic">Driver factory pattern</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – PyTest Fixtures & conftest.py videos in Selenium playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-red)"></span>Allure / pytest-html Reports</div>
+            <div class="skill-desc">Generate professional test reports. Allure is the industry standard. Learn to auto-attach screenshots on test failure — interviewers love seeing this in portfolio projects.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">pytest-html setup</span>
+              <span class="skill-topic">Allure integration</span>
+              <span class="skill-topic">Screenshot on failure hook</span>
+              <span class="skill-topic">Custom report styling</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqq2l-8EuBTZJ3lLcOrCNaiH" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – PyTest HTML Report video in Selenium playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-purple)"></span>Git & GitHub</div>
+            <div class="skill-desc">Version control is non-negotiable. Interviewers will ask for your GitHub link. Host all your projects publicly with clean READMEs and commit history.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">init, add, commit, push, pull</span>
+              <span class="skill-topic">branch, merge</span>
+              <span class="skill-topic">Pull requests</span>
+              <span class="skill-topic">.gitignore for test frameworks</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" class="skill-resource" target="_blank">▶ freeCodeCamp – Git and GitHub for Beginners · youtube.com · Free · 1 hr</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIER 3 -->
+      <div class="tier-card">
+        <div class="tier-header" onclick="toggleTier(this.parentElement)">
+          <div class="tier-badge" style="background:rgba(245,197,24,0.12); color:var(--accent-yellow); border: 1px solid rgba(245,197,24,0.25);">TIER 3</div>
+          <div class="tier-info">
+            <div class="tier-title">Industry Ready</div>
+            <div class="tier-meta">Months 5–6 · Goal: Clear interviews, contribute on Day 1</div>
+            <div style="margin-top:6px; font-size:10px; color:var(--accent-yellow);">Resources: TechWorld with Nana (CI/CD) · Naveen AutomationLabs (API) · Mosh (SQL) · Udemy (SDLC)</div>
+          </div>
+          <i class="tier-toggle">↓</i>
+        </div>
+        <div class="tier-body">
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-yellow)"></span>CI/CD with GitHub Actions</div>
+            <div class="skill-desc">Write a .yml workflow that installs dependencies and runs your pytest suite on every push. This is the single biggest differentiator for freshers — shows you think like an engineer, not just a tester.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">.github/workflows/test.yml</span>
+              <span class="skill-topic">Headless Chrome in CI</span>
+              <span class="skill-topic">Report artifacts upload</span>
+              <span class="skill-topic">Pass/fail badge in README</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=R8_veQiYBjI" class="skill-resource" target="_blank">▶ TechWorld with Nana – GitHub Actions Full Course · youtube.com · Free · 1.5 hrs</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-green)"></span>API Testing (Requests + Postman)</div>
+            <div class="skill-desc">API testing is increasingly expected even from UI automation roles. Learn the requests library in Python. Understand REST fundamentals and write pytest-based API tests.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">GET / POST / PUT / DELETE</span>
+              <span class="skill-topic">JSON response parsing</span>
+              <span class="skill-topic">Status code assertions</span>
+              <span class="skill-topic">pytest tests for APIs</span>
+              <span class="skill-topic">Postman collections + Newman</span>
+            </div>
+            <a href="https://www.youtube.com/playlist?list=PLFGoYjJG_fqp891lruz5fCRPWsDtEXJky" class="skill-resource" target="_blank">▶ Naveen AutomationLabs – REST API & WebServices Tutorials Playlist · youtube.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-blue)"></span>SQL Basics</div>
+            <div class="skill-desc">Many test roles involve validating data in databases. Being able to write SQL queries to verify test data sets you apart from most automation freshers.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">SELECT, WHERE, ORDER BY</span>
+              <span class="skill-topic">JOIN (INNER, LEFT)</span>
+              <span class="skill-topic">GROUP BY, HAVING</span>
+              <span class="skill-topic">SQLite in Python tests</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" class="skill-resource" target="_blank">▶ Mosh – SQL Tutorial for Beginners · youtube.com · Free · 3 hrs</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-red)"></span>Test Planning & SDLC Knowledge</div>
+            <div class="skill-desc">Understand how software testing fits into the development lifecycle. Many companies use this as the baseline before evaluating automation skills.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Test cases & test plans</span>
+              <span class="skill-topic">Bug life cycle</span>
+              <span class="skill-topic">JIRA basics</span>
+              <span class="skill-topic">Agile/Scrum ceremonies</span>
+              <span class="skill-topic">ISTQB Foundation concepts</span>
+            </div>
+            <a href="https://www.udemy.com/course/learn-selenium-with-python-d/" class="skill-resource" target="_blank">▶ Udemy – Selenium Python & PyTest · Module 1 covers testing types, SDLC, manual vs automation · udemy.com</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIER 4 -->
+      <div class="tier-card">
+        <div class="tier-header" onclick="toggleTier(this.parentElement)">
+          <div class="tier-badge" style="background:rgba(255,92,92,0.12); color:var(--accent-red); border: 1px solid rgba(255,92,92,0.25);">TIER 4</div>
+          <div class="tier-info">
+            <div class="tier-title">Future Proof (AI Era)</div>
+            <div class="tier-meta">Month 7+ · Goal: Stay irreplaceable in the AI world</div>
+            <div style="margin-top:6px; font-size:10px; color:var(--accent-red);">Resources: Test Automation University (Playwright + AI + SDET) · freeCodeCamp (Locust)</div>
+          </div>
+          <i class="tier-toggle">↓</i>
+        </div>
+        <div class="tier-body">
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-red)"></span>Playwright (Python)</div>
+            <div class="skill-desc">Playwright is 42% faster than Selenium with 67% fewer flaky tests. It's where many new projects are going. After Selenium, the learning curve is fast — concepts directly transfer.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Playwright vs Selenium architecture</span>
+              <span class="skill-topic">Auto-wait (no manual sleep)</span>
+              <span class="skill-topic">Network interception</span>
+              <span class="skill-topic">Mobile emulation</span>
+              <span class="skill-topic">Trace viewer</span>
+            </div>
+            <a href="https://testautomationu.applitools.com/playwright-python-tutorial/" class="skill-resource" target="_blank">▶ Test Automation University – Playwright with Python · testautomationu.applitools.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-green)"></span>AI-Augmented Testing Concepts</div>
+            <div class="skill-desc">AI tools like Testim and Applitools auto-fix broken locators, generate test cases from user behavior, and detect visual regressions. You don't need to build these — you need to use and understand them.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Self-healing locators (Testim)</span>
+              <span class="skill-topic">Visual AI testing (Applitools)</span>
+              <span class="skill-topic">AI test case generation</span>
+              <span class="skill-topic">Flaky test detection</span>
+            </div>
+            <a href="https://testautomationu.applitools.com/modern-ai-testing/" class="skill-resource" target="_blank">▶ Test Automation University – Introduction to AI Testing · testautomationu.applitools.com · Free</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-blue)"></span>Performance Testing Basics (Locust)</div>
+            <div class="skill-desc">Basic load testing knowledge makes you more rounded. Locust is Python-native — easy to learn and very interview-friendly for senior roles.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Throughput & latency concepts</span>
+              <span class="skill-topic">Concurrent users simulation</span>
+              <span class="skill-topic">Locust task sets</span>
+              <span class="skill-topic">Load vs stress testing</span>
+            </div>
+            <a href="https://www.youtube.com/watch?v=Vl0Q0mJd_Tg" class="skill-resource" target="_blank">▶ freeCodeCamp – Load Testing with Locust (Python) · youtube.com · Free · 1.5 hrs</a>
+          </div>
+
+          <div class="skill-block">
+            <div class="skill-name"><span class="skill-dot" style="background:var(--accent-purple)"></span>SDET Mindset & Shift-Left Testing</div>
+            <div class="skill-desc">58% of enterprises are now upskilling QA teams in AI tools. The SDET title is growing fastest. Start thinking beyond testing — understand build systems, code reviews, and developer workflows.</div>
+            <div class="skill-topics">
+              <span class="skill-topic">Code review participation</span>
+              <span class="skill-topic">Test pyramid strategy</span>
+              <span class="skill-topic">Shift-left testing principles</span>
+              <span class="skill-topic">Docker basics for test environments</span>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=SDET+roadmap+2025" class="skill-resource" target="_blank">▶ Search: "SDET Roadmap 2025" on YouTube</a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== MARKET ===== -->
+  <div id="market" class="section">
+
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-num">₹3.5–6L</div>
+        <div class="market-label">Fresher CTC in India<br>(entry-level Selenium)</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">₹18–30L</div>
+        <div class="market-label">Senior SDET with Selenium + Playwright</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">+30%</div>
+        <div class="market-label">Projected increase in Selenium jobs by 2026</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">31K+</div>
+        <div class="market-label">Companies actively using Selenium on LinkedIn (2025)</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">58%</div>
+        <div class="market-label">Enterprises upskilling QA teams in AI tools (2025)</div>
+      </div>
+      <div class="market-card">
+        <div class="market-num">$51B</div>
+        <div class="market-label">Automation testing market projected by 2031</div>
+      </div>
+    </div>
+
+    <div style="font-family: var(--font-head); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 16px; margin-top: 8px;">How to Enter as a Fresher — Strategy</div>
+
+    <div class="strategy-list">
+      <div class="strategy-item">
+        <div class="strategy-num">1</div>
+        <div class="strategy-text"><strong>Build 5 portfolio projects on GitHub</strong> — with clean READMEs, meaningful commit history, and Allure reports. This alone gets you past 90% of other freshers.</div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-num">2</div>
+        <div class="strategy-text"><strong>Get ISTQB Foundation certification</strong> — widely recognized in India, adds instant credibility. Cost: ₹8,000–₹12,000.</div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-num">3</div>
+        <div class="strategy-text"><strong>Target service companies first</strong> — TCS, Infosys, Wipro, Capgemini all have QA automation tracks where Selenium + Python is exactly what they hire freshers for.</div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-num">4</div>
+        <div class="strategy-text"><strong>Contribute to open-source test repos</strong> on GitHub. Even small contributions show you can work in real codebases and collaborate with others.</div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-num">5</div>
+        <div class="strategy-text"><strong>Master the interview vocabulary:</strong> POM, conftest.py, pytest fixtures, CI/CD, Page Object, Allure, WebDriverWait. Being able to speak these fluently matters as much as coding them.</div>
+      </div>
+      <div class="strategy-item">
+        <div class="strategy-num">6</div>
+        <div class="strategy-text"><strong>Target these job titles:</strong> Junior QA Automation Engineer, SDET Trainee, Software Test Engineer (Fresher), Automation Tester, QA Engineer – Python/Selenium.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== TRACKER ===== -->
+  <div id="tracker" class="section">
+
+    <div class="progress-section">
+      <div class="progress-title">Your Learning Progress</div>
+      <div class="progress-sub">Click items to mark them complete. Progress saves in your browser.</div>
+
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+      </div>
+      <div class="progress-label">
+        <span id="progressText">0 of 24 completed</span>
+        <span id="progressPct">0%</span>
+      </div>
+
+      <div class="section-label">🟢 Tier 1 — Foundation</div>
+      <div class="checklist" id="checklistContainer">
+        <div class="checklist-item" data-id="1" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Python for Testers</div>
+            <div class="check-sub">Variables, OOP, file handling, exception handling</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="2" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">HTML/CSS + DevTools</div>
+            <div class="check-sub">DOM inspection, tag/class/ID, Chrome DevTools</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="3" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Selenium WebDriver Core</div>
+            <div class="check-sub">All locator strategies, waits, alerts, iframes, screenshots</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="4" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">PyTest Basics</div>
+            <div class="check-sub">Fixtures, markers, parametrize, pytest-html</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px">🔵 Tier 2 — Framework Builder</div>
+      <div class="checklist">
+        <div class="checklist-item" data-id="5" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Page Object Model (POM)</div>
+            <div class="check-sub">Page classes, BasePage, locator encapsulation</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="6" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Data-Driven Testing</div>
+            <div class="check-sub">openpyxl, CSV, JSON with pytest parametrize</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="7" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">conftest.py + Fixture Architecture</div>
+            <div class="check-sub">Fixture scopes, driver factory, global fixtures</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="8" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Allure / pytest-html Reports</div>
+            <div class="check-sub">Professional reports, screenshot on failure hook</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="9" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Git & GitHub</div>
+            <div class="check-sub">init, commit, push, pull, branches, PRs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px">🟡 Tier 3 — Industry Ready</div>
+      <div class="checklist">
+        <div class="checklist-item" data-id="10" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">CI/CD with GitHub Actions</div>
+            <div class="check-sub">Workflow .yml, headless CI, report artifacts</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="11" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">API Testing (Requests + Postman)</div>
+            <div class="check-sub">GET/POST/PUT/DELETE, JSON assertions, pytest API tests</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="12" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">SQL Basics</div>
+            <div class="check-sub">SELECT, JOIN, GROUP BY, SQLite in Python</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="13" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Test Planning & SDLC</div>
+            <div class="check-sub">Test cases, JIRA, Agile/Scrum, ISTQB concepts</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px">🔴 Tier 4 — Future Proof</div>
+      <div class="checklist">
+        <div class="checklist-item" data-id="14" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Playwright (Python)</div>
+            <div class="check-sub">Auto-wait, network interception, trace viewer</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="15" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">AI-Augmented Testing</div>
+            <div class="check-sub">Applitools, Testim, self-healing locators</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="16" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Performance Testing (Locust)</div>
+            <div class="check-sub">Load testing, throughput/latency, concurrent users</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="17" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">SDET Mindset</div>
+            <div class="check-sub">Shift-left testing, Docker basics, test pyramid</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px">🚀 Projects Completed</div>
+      <div class="checklist">
+        <div class="checklist-item" data-id="18" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Project 1: E-Commerce End-to-End Test Suite</div>
+            <div class="check-sub">On GitHub with Allure reports + screenshots on failure</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="19" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Project 2: Cross-Browser Regression Framework</div>
+            <div class="check-sub">Chrome, Firefox, Edge with CLI browser param</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="20" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Project 3: Data-Driven Testing with Excel</div>
+            <div class="check-sub">50+ test rows, auto-generated pass/fail report</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="21" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Project 4: CI/CD Pipeline (GitHub Actions)</div>
+            <div class="check-sub">Auto-runs on push, report artifacts, README badge</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="22" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">Project 5: AI Visual Regression Tester</div>
+            <div class="check-sub">Pillow pixel-diff + Applitools Eyes integration</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px">🎯 Career Milestones</div>
+      <div class="checklist">
+        <div class="checklist-item" data-id="23" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">ISTQB Foundation Certification</div>
+            <div class="check-sub">Registered and cleared the exam</div>
+          </div>
+        </div>
+        <div class="checklist-item" data-id="24" onclick="toggleCheck(this)">
+          <div class="check-box"></div>
+          <div class="check-text">
+            <div class="check-label">First QA Automation Job Offer</div>
+            <div class="check-sub">🎉 Offer letter received — you made it!</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Selenium Python Automation Tester Roadmap · Built for Hyderabad QA Freshers · 2025–2026
+  </div>
+
+</div>
+
+<script>
+  // TAB SWITCHING
+  function switchTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // PROJECT ACCORDION
+  function toggleProject(card) {
+    card.classList.toggle('open');
+  }
+
+  // TIER ACCORDION
+  function toggleTier(card) {
+    const isOpen = card.classList.contains('open');
+    const toggle = card.querySelector('.tier-toggle');
+    if (isOpen) {
+      card.classList.remove('open');
+      toggle.textContent = '↓';
+    } else {
+      card.classList.add('open');
+      toggle.textContent = '↑';
+    }
+  }
+
+  // CHECKLIST + PROGRESS
+  const STORAGE_KEY = 'selenium_roadmap_progress';
+
+  function loadProgress() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const checked = JSON.parse(saved);
+        checked.forEach(id => {
+          const item = document.querySelector(`.checklist-item[data-id="${id}"]`);
+          if (item) item.classList.add('checked');
+        });
+      }
+    } catch(e) {}
+    updateProgress();
+  }
+
+  function saveProgress() {
+    try {
+      const checked = [...document.querySelectorAll('.checklist-item.checked')].map(el => el.dataset.id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));
+    } catch(e) {}
+  }
+
+  function toggleCheck(item) {
+    item.classList.toggle('checked');
+    saveProgress();
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.checklist-item').length;
+    const done = document.querySelectorAll('.checklist-item.checked').length;
+    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressText').textContent = `${done} of ${total} completed`;
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  loadProgress();
+</script>
+
+</body>
+</html>
