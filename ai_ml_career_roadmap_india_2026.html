@@ -1,0 +1,483 @@
+
+<h2 class="sr-only">Interactive AI/ML Career Roadmap for India 2026 — Beginner to ML Engineer in 90 days</h2>
+<style>
+:root{--c1:#0f4c81;--c2:#1a6fbf;--c3:#e8f4fd;--c4:#ff6b35;--c5:#2d8a4e;--c6:#f59e0b;--bg:#fff;--surface:#f8fafc;--border:rgba(0,0,0,0.09);--text:var(--color-text-primary);--muted:var(--color-text-secondary)}
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1.5rem 0;font-size:14px;line-height:1.6;color:var(--text)}
+.hero{background:linear-gradient(135deg,#0f4c81 0%,#1a6fbf 60%,#0d7377 100%);border-radius:14px;padding:1.75rem 1.5rem;margin-bottom:1.5rem;color:#fff}
+.hero h1{font-size:22px;font-weight:500;margin-bottom:6px;letter-spacing:-0.3px}
+.hero p{font-size:13px;opacity:0.85;max-width:560px}
+.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.badge{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:3px 10px;font-size:11px;color:#fff;font-weight:500}
+.nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.nav-btn{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;color:var(--text);font-weight:500;transition:all 0.15s}
+.nav-btn:hover{background:var(--color-background-primary);border-color:var(--color-border-secondary)}
+.nav-btn.active{background:#0f4c81;color:#fff;border-color:#0f4c81}
+.panel{display:none}.panel.active{display:block}
+.phase-card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.phase-header{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.phase-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.phase-title{font-weight:500;font-size:15px}
+.phase-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.phase-chevron{margin-left:auto;font-size:12px;color:var(--muted);transition:transform 0.2s}
+.phase-body{padding:0 16px 16px;display:none}
+.phase-body.open{display:block}
+.week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:10px 0}
+.week-box{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px}
+.week-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;font-weight:500;margin-bottom:4px}
+.week-tasks{font-size:12px;line-height:1.7}
+.resource-section{margin-top:12px}
+.res-label{font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.res-list{list-style:none;padding:0}
+.res-list li{font-size:12px;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:flex-start;gap:6px}
+.res-list li:last-child{border-bottom:none}
+.tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;flex-shrink:0;margin-top:1px}
+.tag-free{background:#eaf3de;color:#27500a}
+.tag-fast{background:#faeeda;color:#633806}
+.tag-deep{background:#e6f1fb;color:#0c447c}
+.tag-paid{background:#fbeaf0;color:#72243e}
+.tag-skip{background:#fcebeb;color:#791f1f}
+.tag-hot{background:#f0fff4;color:#065f46;border:1px solid #6ee7b7}
+.milestone-box{background:#eaf3de;border:0.5px solid #c0dd97;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:12px}
+.milestone-box strong{color:#27500a;display:block;margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.warning-box{background:#faeeda;border:0.5px solid #FAC775;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:#633806}
+.warning-box strong{display:block;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.info-box{background:#e6f1fb;border:0.5px solid #85b7eb;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:12px;color:#0c447c}
+.info-box strong{display:block;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px}
+.project-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:10px;padding:12px 14px;margin:6px 0}
+.project-title{font-weight:500;font-size:13px;margin-bottom:4px}
+.project-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.project-stack{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.stack-tag{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--muted)}
+.tracker-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.tracker-table th{background:var(--color-background-secondary);padding:8px 10px;text-align:left;font-weight:500;border-bottom:0.5px solid var(--color-border-secondary)}
+.tracker-table td{padding:7px 10px;border-bottom:0.5px solid var(--color-border-tertiary);vertical-align:top}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:10px 0}
+.kpi-card{background:var(--color-background-secondary);border-radius:8px;padding:12px;text-align:center}
+.kpi-num{font-size:22px;font-weight:500;color:#0f4c81}
+.kpi-label{font-size:11px;color:var(--muted);margin-top:2px}
+.salary-bar{display:flex;align-items:center;gap:8px;margin:6px 0}
+.salary-label{font-size:12px;min-width:90px;color:var(--muted)}
+.salary-fill{height:8px;border-radius:4px;background:linear-gradient(90deg,#0f4c81,#1a6fbf)}
+.salary-val{font-size:12px;font-weight:500;color:var(--text)}
+.checklist-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:13px}
+.checklist-item:last-child{border-bottom:none}
+.check-box{width:16px;height:16px;border:0.5px solid var(--color-border-secondary);border-radius:4px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.1s}
+.check-box.done{background:#0f4c81;border-color:#0f4c81;color:#fff}
+.section-title{font-size:16px;font-weight:500;margin:16px 0 10px;padding-bottom:6px;border-bottom:0.5px solid var(--color-border-tertiary)}
+.day-schedule{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.day-slot{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:8px;padding:10px 12px;font-size:12px}
+.day-slot-label{font-size:10px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.chip{display:inline-block;background:#e6f1fb;color:#185fa5;font-size:10px;border-radius:4px;padding:1px 6px;font-weight:500;margin-left:4px}
+.gpu-note{background:#fbeaf0;border:0.5px solid #ed93b1;border-radius:8px;padding:10px 12px;font-size:12px;color:#72243e;margin:8px 0}
+</style>
+<div class="wrap">
+<div class="hero">
+  <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Master Roadmap 2026</div>
+  <h1>AI/ML Engineer Career Path — India & Remote Global</h1>
+  <p>Personalized for Beginner-Intermediate with Python basics + SQL, targeting ML Engineer / Freelance AI Automation. Brutally realistic. Built for i5-9300H + GTX 1650 + 14hrs/week.</p>
+  <div class="badges">
+    <span class="badge">90-Day Accelerated</span>
+    <span class="badge">Weak Math Adapted</span>
+    <span class="badge">Free-First Resources</span>
+    <span class="badge">GTX 1650 Compatible</span>
+    <span class="badge">India Market Aware</span>
+    <span class="badge">2026 Trends</span>
+  </div>
+</div>
+
+<div class="nav" id="mainNav">
+  <button class="nav-btn active" onclick="switchPanel('phases')">6 Phases</button>
+  <button class="nav-btn" onclick="switchPanel('schedule')">Daily Schedule</button>
+  <button class="nav-btn" onclick="switchPanel('tracker')">Weekly Tracker</button>
+  <button class="nav-btn" onclick="switchPanel('projects')">Project Ladder</button>
+  <button class="nav-btn" onclick="switchPanel('jobs')">Job Ready</button>
+  <button class="nav-btn" onclick="switchPanel('bonus')">Bonus Sections</button>
+  <button class="nav-btn" onclick="switchPanel('salary')">Salary Map</button>
+</div>
+
+<div id="phases" class="panel active">
+  <div class="info-box"><strong>Your 90-Day Reality Check</strong>With 14 hrs/week (10 weekday + 5+5 weekend), you have ~840 hours in 6 months, ~210 in 90 days. 90 days gets you job-ready for junior ML/AI roles if you skip fluff and focus on what recruiters test. Click each phase to expand.</div>
+
+  <!-- PHASE 1 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p1')">
+      <div class="phase-icon" style="background:#e6f1fb">📐</div>
+      <div><div class="phase-title">Phase 1 — Foundation Boost <span class="chip">Weeks 1–3</span></div><div class="phase-sub">Skip basics you know. Fill gaps: NumPy, Pandas, Stats, Math intuition</div></div>
+      <div class="phase-chevron" id="p1-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p1">
+      <div class="warning-box"><strong>⚡ Adapted for Math-Weak Profile</strong>Skip epsilon-delta proofs. Focus on intuition-first: "what does a derivative tell me about a model?" Use 3Blue1Brown. Stop when you understand WHY, not HOW to prove.</div>
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 1</div><div class="week-tasks">NumPy arrays & broadcasting<br>Pandas: groupby, merge, pivot<br>Matplotlib basics<br>Practice: Kaggle Titanic</div></div>
+        <div class="week-box"><div class="week-label">Week 2</div><div class="week-tasks">Linear Algebra intuition (vectors, matrices, dot product)<br>Stats: mean/variance/correlation/p-value<br>Practice on real datasets</div></div>
+        <div class="week-box"><div class="week-label">Week 3</div><div class="week-tasks">Calculus: derivatives as slopes, chain rule intuition<br>Probability: Bayes, distributions<br>SQL window functions review<br>Mini project: EDA report</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">Exact Resources</div>
+        <ul class="res-list">
+          <li><span class="tag tag-free">FREE</span><strong>NumPy/Pandas:</strong> Keith Galli YouTube playlist "Complete Python Pandas" — WHY: best for visual learners, project-based examples</li>
+          <li><span class="tag tag-free">FREE</span><strong>Math intuition:</strong> 3Blue1Brown "Essence of Linear Algebra" (YouTube) + "Essence of Calculus" — WHY: animated, zero proof, pure intuition. Perfect for math-weak learners</li>
+          <li><span class="tag tag-free">FREE</span><strong>Stats:</strong> StatQuest with Josh Starmer (YouTube) — WHY: ML-specific stats, visual, memorable. Best channel for this exact weakness</li>
+          <li><span class="tag tag-fast">FAST</span><strong>Kaggle Learn — Pandas, Data Viz:</strong> kaggle.com/learn — WHY: 2–4 hour micro-courses with instant practice notebooks</li>
+          <li><span class="tag tag-deep">DEEP</span><strong>CS50P (Python deep):</strong> cs50.harvard.edu/python — WHY: free, structured, certification, Harvard quality</li>
+        </ul>
+      </div>
+      <div class="milestone-box"><strong>✅ Phase 1 Milestone</strong>Complete 1 full EDA (Exploratory Data Analysis) notebook on Kaggle Titanic or Heart Disease dataset. Push to GitHub. This is your first portfolio item.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p2')">
+      <div class="phase-icon" style="background:#eaf3de">🤖</div>
+      <div><div class="phase-title">Phase 2 — Core ML <span class="chip">Weeks 4–7</span></div><div class="phase-sub">Scikit-learn, feature engineering, real Kaggle competitions</div></div>
+      <div class="phase-chevron" id="p2-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p2">
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 4</div><div class="week-tasks">Linear/Logistic Regression<br>Decision Trees, Random Forest<br>Train/test split, cross-validation<br>Scikit-learn pipeline</div></div>
+        <div class="week-box"><div class="week-label">Week 5</div><div class="week-tasks">SVM, KNN, Naive Bayes<br>Feature Engineering: encoding, scaling, selection<br>Handling imbalanced data (SMOTE)</div></div>
+        <div class="week-box"><div class="week-label">Week 6</div><div class="week-tasks">XGBoost + LightGBM (industry standard)<br>Hyperparameter tuning: GridSearch, Optuna<br>Model evaluation: precision, recall, AUC-ROC, F1</div></div>
+        <div class="week-box"><div class="week-label">Week 7</div><div class="week-tasks">Unsupervised: K-Means, DBSCAN, PCA<br>Kaggle competition (open one, submit)<br>End-to-end ML project start</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">Exact Resources</div>
+        <ul class="res-list">
+          <li><span class="tag tag-free">FREE</span><strong>Hands-On ML (Aurélien Géron):</strong> github.com/ageron/handson-ml3 — WHY: industry gold standard, free notebooks on GitHub. Chapters 1–8 cover this entire phase</li>
+          <li><span class="tag tag-free">FREE</span><strong>Kaggle ML courses:</strong> kaggle.com/learn/intro-to-machine-learning + intermediate — WHY: built-in kernel, no setup, instant feedback</li>
+          <li><span class="tag tag-fast">FAST</span><strong>Krish Naik ML playlist (YouTube):</strong> Search "Krish Naik complete ML" — WHY: India-specific explanations, Hindi/English, interview-oriented</li>
+          <li><span class="tag tag-deep">DEEP</span><strong>fast.ai Practical ML:</strong> course.fast.ai — WHY: top-down approach, real data, avoids math overload. Ideal for your profile</li>
+          <li><span class="tag tag-paid">PAID (~$15)</span><strong>Udemy: "Machine Learning A-Z" by Kirill Eremenko:</strong> 4.5★, 40hrs, covers full breadth. Buy only during sale</li>
+          <li><span class="tag tag-free">FREE</span><strong>Practice data:</strong> Kaggle datasets — House Prices, Telco Churn, Credit Card Fraud — all classic interview topics</li>
+        </ul>
+      </div>
+      <div class="milestone-box"><strong>✅ Phase 2 Milestone</strong>Build a full Churn Prediction model: data cleaning → feature engineering → XGBoost → evaluation → joblib save. GitHub README with metrics. This alone can get you an internship interview in India.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p3')">
+      <div class="phase-icon" style="background:#faeeda">🧠</div>
+      <div><div class="phase-title">Phase 3 — Deep Learning <span class="chip">Weeks 8–11</span></div><div class="phase-sub">PyTorch focus, CNNs, Transformers. Your GTX 1650 handles small models.</div></div>
+      <div class="phase-chevron" id="p3-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p3">
+      <div class="gpu-note"><strong>🖥️ GTX 1650 Strategy:</strong> Your GPU (4GB VRAM) can handle: small CNNs, fine-tuning with LoRA, BERT-base inference. For large models use free Google Colab (T4 GPU) or Kaggle Notebooks (P100). Do NOT try to run LLaMA-7B locally — use Colab or Hugging Face Inference API instead.</div>
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 8</div><div class="week-tasks">Neural networks from scratch (numpy)<br>Backpropagation intuition<br>PyTorch tensors, autograd<br>First MLP in PyTorch</div></div>
+        <div class="week-box"><div class="week-label">Week 9</div><div class="week-tasks">CNNs: Conv layers, pooling, batch norm<br>Transfer Learning: ResNet/EfficientNet<br>Image classification project</div></div>
+        <div class="week-box"><div class="week-label">Week 10</div><div class="week-tasks">RNN/LSTM: sequence modeling<br>Attention mechanism intuition<br>Transformers: "Attention Is All You Need" (read overview, not full paper)</div></div>
+        <div class="week-box"><div class="week-label">Week 11</div><div class="week-tasks">HuggingFace Transformers library<br>BERT for text classification<br>Fine-tuning small models<br>NLP project: sentiment analysis</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">Exact Resources</div>
+        <ul class="res-list">
+          <li><span class="tag tag-free">FREE</span><strong>fast.ai "Practical Deep Learning for Coders":</strong> course.fast.ai — WHY: best in world for practitioners, top-down, code-first. SKIP Part 2 for now.</li>
+          <li><span class="tag tag-free">FREE</span><strong>Andrej Karpathy "Neural Networks: Zero to Hero" (YouTube):</strong> WHY: best DL course on internet in 2025–26. Builds GPT from scratch. Legendary quality.</li>
+          <li><span class="tag tag-free">FREE</span><strong>PyTorch official tutorials:</strong> pytorch.org/tutorials — WHY: directly from source, always updated, covers 60-min blitz to advanced</li>
+          <li><span class="tag tag-free">FREE</span><strong>HuggingFace NLP course:</strong> huggingface.co/course — WHY: industry standard for transformer usage, certificate, free</li>
+          <li><span class="tag tag-fast">FAST</span><strong>Colab + Kaggle Notebooks:</strong> For GPU access. Zero setup. Use for all DL experiments — don't fight your local GPU.</li>
+        </ul>
+      </div>
+      <div class="milestone-box"><strong>✅ Phase 3 Milestone</strong>Two projects: (1) Image classifier (custom dataset, transfer learning, EfficientNet). (2) Sentiment analysis using BERT fine-tune on Hugging Face. Both on GitHub + Hugging Face Spaces demo.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p4')">
+      <div class="phase-icon" style="background:#fbeaf0">🔮</div>
+      <div><div class="phase-title">Phase 4 — LLMs & GenAI <span class="chip">Weeks 12–15</span></div><div class="phase-sub">Highest ROI phase in 2026. RAG, Agents, LangChain — recruiters LOVE this.</div></div>
+      <div class="phase-chevron" id="p4-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p4">
+      <div class="info-box"><strong>🔥 2026 Market Reality</strong>GenAI skills are the #1 differentiator in India tech hiring right now. Companies like Infosys, TCS, startups, and MNCs all want RAG + Agent experience. This phase alone can get you freelance work on Upwork/Toptal within 60 days of completion.</div>
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 12</div><div class="week-tasks">Prompt Engineering (system/user prompts, few-shot, CoT)<br>OpenAI API / Groq API (free tier)<br>Build a basic chatbot</div></div>
+        <div class="week-box"><div class="week-label">Week 13</div><div class="week-tasks">RAG architecture deep dive<br>Vector databases: ChromaDB (free local) + Pinecone<br>Embeddings: OpenAI / sentence-transformers</div></div>
+        <div class="week-box"><div class="week-label">Week 14</div><div class="week-tasks">LangChain + LlamaIndex (pick one: LlamaIndex preferred in 2026)<br>RAG chatbot over your own PDF docs<br>Gradio / Streamlit UI</div></div>
+        <div class="week-box"><div class="week-label">Week 15</div><div class="week-tasks">AI Agents: tool calling, function calling<br>LoRA fine-tuning (use Colab, free)<br>Deploy on Hugging Face Spaces or Render</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">Exact Resources</div>
+        <ul class="res-list">
+          <li><span class="tag tag-free">FREE</span><strong>deeplearning.ai short courses:</strong> deeplearning.ai/short-courses — "LangChain for LLM App Dev", "Building with RAG", "Agents" — WHY: Andrew Ng + industry experts, each is 1–2 hrs, free auditable</li>
+          <li><span class="tag tag-free">FREE</span><strong>LlamaIndex docs + cookbook:</strong> docs.llamaindex.ai — WHY: better than LangChain for RAG in 2026, cleaner API, actively maintained</li>
+          <li><span class="tag tag-free">FREE</span><strong>Groq API (free tier):</strong> console.groq.com — WHY: fastest LLM inference, free quota, great for prototyping without OpenAI costs</li>
+          <li><span class="tag tag-free">FREE</span><strong>Hugging Face PEFT + TRL for fine-tuning:</strong> huggingface.co/docs/peft — WHY: LoRA fine-tuning with minimal GPU, can run on Colab T4</li>
+          <li><span class="tag tag-fast">FAST</span><strong>Sam Witteveen YouTube "LangChain + LLM tutorials":</strong> WHY: fastest practical LLM coding tutorials, updated regularly, very hands-on</li>
+        </ul>
+      </div>
+      <div class="milestone-box"><strong>✅ Phase 4 Milestone</strong>RAG chatbot that answers questions over a custom knowledge base (e.g., your resume, a company's docs, a legal PDF). Deployed live on HuggingFace Spaces. This is the #1 portfolio project recruiters shortlist on in 2026.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p5')">
+      <div class="phase-icon" style="background:#e1f5ee">⚙️</div>
+      <div><div class="phase-title">Phase 5 — MLOps & Deployment <span class="chip">Weeks 16–19</span></div><div class="phase-sub">Make your models usable. FastAPI, Docker, basic cloud. Enough for interviews.</div></div>
+      <div class="phase-chevron" id="p5-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p5">
+      <div class="warning-box"><strong>⚡ Scope Warning</strong>Do NOT try to master full Kubernetes + CI/CD + all 3 clouds. That's a DevOps career. Your goal: learn enough MLOps to deploy 1 model end-to-end. Kubernetes basics = "I know what it is and have used minikube." That's enough.</div>
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 16</div><div class="week-tasks">FastAPI: serve ML model as REST API<br>Pydantic models, async endpoints<br>Test with Postman / curl</div></div>
+        <div class="week-box"><div class="week-label">Week 17</div><div class="week-tasks">Docker: containerize your FastAPI app<br>docker-compose for multi-service<br>Push to Docker Hub</div></div>
+        <div class="week-box"><div class="week-label">Week 18</div><div class="week-tasks">AWS basics (free tier): EC2, S3, Lambda<br>OR GCP: Cloud Run (easier for ML)<br>Deploy Docker container to cloud</div></div>
+        <div class="week-box"><div class="week-label">Week 19</div><div class="week-tasks">MLflow for experiment tracking<br>GitHub Actions for basic CI/CD<br>Full pipeline: train → track → deploy → monitor</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">Exact Resources</div>
+        <ul class="res-list">
+          <li><span class="tag tag-free">FREE</span><strong>FastAPI official docs:</strong> fastapi.tiangolo.com — WHY: best docs in Python ecosystem, interactive, complete. FastAPI is the 2026 standard for ML APIs.</li>
+          <li><span class="tag tag-free">FREE</span><strong>Docker curriculum (play-with-docker.com):</strong> WHY: browser-based Docker, no local setup, free, official labs</li>
+          <li><span class="tag tag-free">FREE</span><strong>AWS free tier + "AWS Certified Cloud Practitioner" prep:</strong> WHY: free 12-month AWS credits for most services, enough to deploy real apps</li>
+          <li><span class="tag tag-free">FREE</span><strong>MLflow quickstart:</strong> mlflow.org/docs/latest/quickstart.html — WHY: industry standard for experiment tracking, 1-day to learn basics</li>
+          <li><span class="tag tag-free">FREE</span><strong>Chip Huyen "Designing ML Systems" (free chapters on github):</strong> github.com/chiphuyen — WHY: best resource to think like an ML engineer, not just a model builder</li>
+        </ul>
+      </div>
+      <div class="milestone-box"><strong>✅ Phase 5 Milestone</strong>One model fully deployed: FastAPI endpoint → Docker container → running on AWS/GCP free tier. GitHub Actions CI that runs tests on push. Link in your resume. This is what separates ML Engineer from Data Scientist in job descriptions.</div>
+    </div>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase('p6')">
+      <div class="phase-icon" style="background:#fcebeb">🎯</div>
+      <div><div class="phase-title">Phase 6 — Portfolio & Job Ready <span class="chip">Weeks 20–24</span></div><div class="phase-sub">GitHub, LinkedIn, resume, Naukri/LinkedIn apply strategy, interview prep</div></div>
+      <div class="phase-chevron" id="p6-chev">▼</div>
+    </div>
+    <div class="phase-body" id="p6">
+      <div class="week-grid">
+        <div class="week-box"><div class="week-label">Week 20</div><div class="week-tasks">Polish all GitHub repos<br>Write READMEs with metrics + GIFs<br>Deploy 2 projects publicly</div></div>
+        <div class="week-box"><div class="week-label">Week 21</div><div class="week-tasks">Resume: 1 page, ATS-optimized<br>LinkedIn: rebuild with keywords<br>Start applying (20+ applications/week)</div></div>
+        <div class="week-box"><div class="week-label">Week 22</div><div class="week-tasks">ML coding interview prep (LeetCode Easy/Medium)<br>ML concept questions (100 Days of ML Q&A)<br>System design: how to serve ML at scale</div></div>
+        <div class="week-box"><div class="week-label">Week 23–24</div><div class="week-tasks">Mock interviews (Pramp, Interviewing.io)<br>Open source contribution (1 PR to a HuggingFace repo)<br>Freelance profile on Upwork/Toptal setup</div></div>
+      </div>
+      <div class="resource-section">
+        <div class="res-label">India-Specific Job Strategy</div>
+        <ul class="res-list">
+          <li><span class="tag tag-hot">HOT</span><strong>LinkedIn + Naukri:</strong> Use keywords "GenAI", "LLM", "RAG", "MLOps", "LangChain" — these are highest-search terms in JD 2026</li>
+          <li><span class="tag tag-hot">HOT</span><strong>Startups over MNCs for first role:</strong> Bangalore/Hyderabad AI startups pay ₹6–12L for freshers with strong portfolio. Faster growth than TCS/Infosys entry.</li>
+          <li><span class="tag tag-free">FREE</span><strong>FAANG/Product co prep:</strong> ML System Design by Khang Pham (GitHub), "Ace the ML Interview" by Chip Huyen</li>
+          <li><span class="tag tag-free">FREE</span><strong>Remote global:</strong> Toptal, Upwork, Remote.co — target "AI Automation" and "LLM Integration" gigs. India timezone works for US clients (overlap available).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY SCHEDULE -->
+<div id="schedule" class="panel">
+  <div class="section-title">Optimized Daily Schedule</div>
+  <div class="info-box"><strong>Time Math</strong>2hrs weekdays × 5 = 10hrs/week. 5hrs × 2 weekend days = 10hrs/week. Total: ~20hrs/week. More than enough if structured correctly. Weekends = deep project work. Weekdays = concepts + exercises.</div>
+  <div class="day-schedule">
+    <div class="day-slot"><div class="day-slot-label">Weekday — Block 1 (45 min)</div>Watch 1 concept video or read docs. Take notes in Notion/Obsidian. No coding yet.</div>
+    <div class="day-slot"><div class="day-slot-label">Weekday — Block 2 (75 min)</div>Code along or solve 1 Kaggle notebook exercise. Commit to GitHub. This is non-negotiable.</div>
+    <div class="day-slot"><div class="day-slot-label">Saturday (5 hrs)</div>Morning: 2hr deep-dive new concept. Afternoon: 3hr project work — build, debug, deploy. End with a commit.</div>
+    <div class="day-slot"><div class="day-slot-label">Sunday (5 hrs)</div>Morning: 1hr review week's concepts (flashcards). Afternoon: 4hr finish/polish project + write LinkedIn post about what you built.</div>
+  </div>
+  <div class="section-title">Anti-Procrastination System</div>
+  <div class="warning-box"><strong>Procrastination Protocol (Based on Your Weakness)</strong>Rule 1: The 2-Minute Start Rule — open laptop, open notebook, type 1 line. That's the only obligation. Rule 2: Never miss two days in a row. Miss 1 day → fine. Miss 2 → emergency reset. Rule 3: Track streaks on GitHub (green squares are the strongest motivator in dev culture). Rule 4: Block YouTube/Instagram from 8–10pm using Cold Turkey or Freedom.</div>
+</div>
+
+<!-- TRACKER -->
+<div id="tracker" class="panel">
+  <div class="section-title">Weekly Progress Tracker</div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-num">90</div><div class="kpi-label">Day sprint to job-ready</div></div>
+    <div class="kpi-card"><div class="kpi-num">6</div><div class="kpi-label">Portfolio projects minimum</div></div>
+    <div class="kpi-card"><div class="kpi-num">20+</div><div class="kpi-label">Applications/week from Month 3</div></div>
+    <div class="kpi-card"><div class="kpi-num">100</div><div class="kpi-label">GitHub commits target</div></div>
+  </div>
+  <table class="tracker-table">
+    <tr><th>Week</th><th>Phase</th><th>Key Deliverable</th><th>KPI / Check</th></tr>
+    <tr><td>1–2</td><td>Foundation</td><td>NumPy/Pandas fluency</td><td>Complete 3 Kaggle exercises</td></tr>
+    <tr><td>3</td><td>Foundation</td><td>EDA project on GitHub</td><td>README + 5 visualizations live</td></tr>
+    <tr><td>4–5</td><td>Core ML</td><td>Scikit-learn pipeline built</td><td>Can explain train/test/CV to anyone</td></tr>
+    <tr><td>6–7</td><td>Core ML</td><td>XGBoost churn model</td><td>AUC > 0.82, pushed to GitHub</td></tr>
+    <tr><td>8–9</td><td>Deep Learning</td><td>CNN image classifier</td><td>Deployed on HF Spaces</td></tr>
+    <tr><td>10–11</td><td>Deep Learning</td><td>BERT sentiment analysis</td><td>Fine-tuned model on HF Hub</td></tr>
+    <tr><td>12–13</td><td>LLM/GenAI</td><td>RAG chatbot built</td><td>Answers 10 domain Q&As correctly</td></tr>
+    <tr><td>14–15</td><td>LLM/GenAI</td><td>RAG deployed live</td><td>Public URL, shareable with recruiters</td></tr>
+    <tr><td>16–17</td><td>MLOps</td><td>FastAPI + Docker app</td><td>Docker image on Docker Hub</td></tr>
+    <tr><td>18–19</td><td>MLOps</td><td>Cloud deployment done</td><td>App live on AWS/GCP free tier</td></tr>
+    <tr><td>20–21</td><td>Portfolio</td><td>Resume + LinkedIn live</td><td>First 20 applications sent</td></tr>
+    <tr><td>22–24</td><td>Job Hunt</td><td>Interviews active</td><td>3+ interview calls landed</td></tr>
+  </table>
+  <div class="section-title" style="margin-top:20px">Monthly KPI Targets</div>
+  <table class="tracker-table">
+    <tr><th>Month</th><th>Technical KPIs</th><th>Career KPIs</th><th>Consistency KPIs</th></tr>
+    <tr><td>Month 1</td><td>Master NumPy, Pandas, Scikit-learn basics</td><td>1 project on GitHub, LinkedIn updated</td><td>25+ GitHub commits, 0 missed weeks</td></tr>
+    <tr><td>Month 2</td><td>DL models built, BERT fine-tuned, RAG prototype</td><td>3 projects live, HF Spaces demo</td><td>60+ commits, 2 LinkedIn posts/week</td></tr>
+    <tr><td>Month 3</td><td>Full MLOps pipeline, deployed app</td><td>Resume sent 60+ places, 5+ responses</td><td>100+ commits, 1 open source PR</td></tr>
+    <tr><td>Month 4–6</td><td>Interview-level system design knowledge</td><td>Offer in hand OR freelance client secured</td><td>Keep building, 1 blog post/month</td></tr>
+  </table>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="panel">
+  <div class="section-title">Project Progression Ladder</div>
+  <div class="info-box"><strong>Portfolio Strategy</strong>Quality >> Quantity. 5 strong projects beat 20 notebooks. Every project needs: live demo + GitHub README with metrics + 2-line explanation of business value. Recruiters spend 45 seconds on your GitHub.</div>
+  <div class="project-card">
+    <div class="project-title">1. EDA Storytelling Project <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 3</span></div>
+    <div class="project-desc">Deep exploratory analysis on a real dataset (e.g., India Air Quality, COVID data, IPL stats). Find 5 non-obvious insights. Write it like a data journalist story.</div>
+    <div class="project-stack"><span class="stack-tag">Pandas</span><span class="stack-tag">Seaborn</span><span class="stack-tag">Matplotlib</span><span class="stack-tag">Jupyter</span><span class="stack-tag">GitHub</span></div>
+  </div>
+  <div class="project-card">
+    <div class="project-title">2. Customer Churn Predictor <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 7</span></div>
+    <div class="project-desc">End-to-end: data ingestion → feature engineering → XGBoost model → evaluation dashboard. Show feature importance. Include business recommendation based on results.</div>
+    <div class="project-stack"><span class="stack-tag">XGBoost</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Optuna</span><span class="stack-tag">Pandas</span><span class="stack-tag">Streamlit</span></div>
+  </div>
+  <div class="project-card">
+    <div class="project-title">3. Disease Detection from X-Rays (CNN) <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 9</span></div>
+    <div class="project-desc">Binary classifier for pneumonia/normal using chest X-ray dataset (Kaggle). EfficientNet transfer learning. Grad-CAM visualization to show what the model "looks at." Deploy on HF Spaces.</div>
+    <div class="project-stack"><span class="stack-tag">PyTorch</span><span class="stack-tag">EfficientNet</span><span class="stack-tag">Grad-CAM</span><span class="stack-tag">Gradio</span><span class="stack-tag">HF Spaces</span></div>
+  </div>
+  <div class="project-card">
+    <div class="project-title">4. RAG Legal/Research Assistant <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 14 ⭐ FLAGSHIP</span></div>
+    <div class="project-desc">Upload any PDF (legal doc, research paper, company policy) → ask questions → get accurate answers with source citations. Built with LlamaIndex + ChromaDB + Groq API. Streamlit UI. Live demo URL.</div>
+    <div class="project-stack"><span class="stack-tag">LlamaIndex</span><span class="stack-tag">ChromaDB</span><span class="stack-tag">Groq/OpenAI</span><span class="stack-tag">Streamlit</span><span class="stack-tag">HF Spaces</span></div>
+  </div>
+  <div class="project-card">
+    <div class="project-title">5. AI Automation Agent <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 15 — Freelance-Ready</span></div>
+    <div class="project-desc">Multi-tool agent: can search web, run Python code, write emails, summarize documents. Built with LangGraph or LlamaIndex AgentRunner. This is exactly what businesses pay ₹50–200/hr for on Upwork.</div>
+    <div class="project-stack"><span class="stack-tag">LangGraph</span><span class="stack-tag">Tool Calling</span><span class="stack-tag">FastAPI</span><span class="stack-tag">LLM</span><span class="stack-tag">React UI</span></div>
+  </div>
+  <div class="project-card">
+    <div class="project-title">6. Production ML API <span style="color:var(--muted);font-weight:400;font-size:12px">— Week 19 — MLOps Proof</span></div>
+    <div class="project-desc">Take your churn model → wrap in FastAPI → containerize with Docker → deploy to AWS/GCP → add MLflow experiment tracking → GitHub Actions CI. Full MLOps cycle documented in README.</div>
+    <div class="project-stack"><span class="stack-tag">FastAPI</span><span class="stack-tag">Docker</span><span class="stack-tag">MLflow</span><span class="stack-tag">AWS/GCP</span><span class="stack-tag">GitHub Actions</span></div>
+  </div>
+</div>
+
+<!-- JOB READY -->
+<div id="jobs" class="panel">
+  <div class="section-title">Job-Ready Checklist</div>
+  <div id="checklist"></div>
+  <div class="section-title" style="margin-top:20px">Interview Prep Roadmap</div>
+  <table class="tracker-table">
+    <tr><th>Interview Type</th><th>What to Prepare</th><th>Best Resource</th></tr>
+    <tr><td>ML Concepts</td><td>Bias-variance, overfitting, regularization, evaluation metrics, feature selection</td><td>StatQuest YouTube + "100 Days of ML" on GitHub</td></tr>
+    <tr><td>Coding (DS/Algo)</td><td>Arrays, strings, HashMaps, Sorting for ML. LeetCode Easy-Medium only. Pattern: Sliding Window, Two Pointer</td><td>NeetCode 75 list (free) — neetcode.io</td></tr>
+    <tr><td>ML System Design</td><td>"Design a recommendation system", "Design a fraud detection pipeline", "How would you serve 1M predictions/day"</td><td>ML System Design (Chip Huyen free GitHub), ByteByteGo ML systems</td></tr>
+    <tr><td>Project Deep Dives</td><td>Be ready to explain every line of your code, why you chose XGBoost over Random Forest, what your evaluation metrics mean</td><td>Practice by explaining projects to a rubber duck (seriously)</td></tr>
+    <tr><td>Behavioral (India MNCs)</td><td>STAR format: Situation → Task → Action → Result. Have 5 stories ready.</td><td>Exponent app (paid) or free on YouTube "behavioral ML interviews"</td></tr>
+    <tr><td>Case Studies (Product cos)</td><td>Google/Microsoft style: "How would you improve YouTube recommendations?" Think user, metric, model, deployment.</td><td>Ace the Data Science Interview book + free Quora discussions</td></tr>
+  </table>
+</div>
+
+<!-- BONUS -->
+<div id="bonus" class="panel">
+  <div class="section-title">Common Mistakes to Avoid</div>
+  <ul class="res-list">
+    <li><span class="tag tag-skip">SKIP</span>Tutorial hell — watching 50 videos without building anything. Max ratio: 1hr watching : 2hrs building</li>
+    <li><span class="tag tag-skip">SKIP">Learning TensorFlow AND PyTorch together. Choose PyTorch (2026 industry standard). Do TF only if job requires.</li>
+    <li><span class="tag tag-skip">SKIP</span>Building 10 toy projects instead of 5 production-quality ones. Recruiters skip notebooks without deployed demos.</li>
+    <li><span class="tag tag-skip">SKIP</span>Ignoring the math completely. You need intuition, not proofs. 20% math understanding = 80% ML productivity.</li>
+    <li><span class="tag tag-skip">SKIP</span>Skipping GitHub. Every day you don't commit is a missed signal. Green squares on GitHub are your silent resume.</li>
+  </ul>
+  <div class="section-title" style="margin-top:16px">What to Skip in 2026</div>
+  <ul class="res-list">
+    <li><span class="tag tag-skip">SKIP</span>TensorFlow 1.x — dead. Even TF 2.x is declining in new projects. PyTorch dominates research + production.</li>
+    <li><span class="tag tag-skip">SKIP</span>Kubernetes deep dive — you need "can deploy with K8s", not CKA certification, as an ML engineer fresher</li>
+    <li><span class="tag tag-skip">SKIP</span>MATLAB — completely irrelevant in 2026 Python-first ML world</li>
+    <li><span class="tag tag-skip">SKIP</span>Full Spark for beginners — PySpark basics is fine, full Spark engineering is a Data Engineering track, not ML</li>
+    <li><span class="tag tag-skip">SKIP</span>Learning R — Python handles everything. R is niche (academia, some biostat). Zero ROI for your goals.</li>
+  </ul>
+  <div class="section-title" style="margin-top:16px">Highest ROI Skills in AI — 2026</div>
+  <ul class="res-list">
+    <li><span class="tag tag-hot">HOT #1</span><strong>RAG + LlamaIndex/LangChain:</strong> Every company building internal AI tools needs this. 6-month trend is still growing.</li>
+    <li><span class="tag tag-hot">HOT #2</span><strong>AI Agents + Tool Calling:</strong> Agentic AI is the 2026 buzzword with real demand. LangGraph, CrewAI skills = premium salary.</li>
+    <li><span class="tag tag-hot">HOT #3</span><strong>MLOps (FastAPI + Docker + MLflow):</strong> ML engineers who can deploy are 40% rarer than those who can only model.</li>
+    <li><span class="tag tag-hot">HOT #4</span><strong>Fine-tuning with LoRA/QLoRA:</strong> Domain-specific models are a goldmine for enterprises. Skill is accessible on Colab.</li>
+    <li><span class="tag tag-hot">HOT #5</span><strong>Multimodal (text+image):</strong> GPT-4V, LLaVA, CLIP. Growing fast, few practitioners trained yet.</li>
+  </ul>
+  <div class="section-title" style="margin-top:16px">Recovery Plan — If You Fall Off Track</div>
+  <div class="warning-box"><strong>The 72-Hour Reset Protocol</strong>Day 1: Do NOT try to catch up. Just open GitHub and make 1 tiny commit. Any commit. Day 2: Watch 1 video from where you left off. Day 3: Build something small. Restart from there, NOT from the beginning. Restart guilt is the #1 reason people quit. You are not behind. You pick up where you left off. Always.</div>
+  <div class="section-title" style="margin-top:16px">How to Stand Out in India & Global Market</div>
+  <ul class="res-list">
+    <li><span class="tag tag-hot">INDIA</span>Write 1 LinkedIn post per week showing what you built. Indian tech community is highly active on LinkedIn. Visibility = inbound recruiter messages.</li>
+    <li><span class="tag tag-hot">INDIA</span>Join AI/ML communities: iNeuron, Analytics Vidhya Discord, Bangalore AI Meetup (virtual). Get referrals — 60% of India tech jobs are filled via referrals.</li>
+    <li><span class="tag tag-hot">GLOBAL</span>Contribute to 1 open source project on GitHub (HuggingFace, LlamaIndex, scikit-learn). Even fixing docs counts. It shows up in your profile.</li>
+    <li><span class="tag tag-hot">GLOBAL</span>Get 1 Kaggle competition rank (top 25% is enough). Add it to resume. Kaggle rank = international credibility with no interview needed.</li>
+  </ul>
+</div>
+
+<!-- SALARY -->
+<div id="salary" class="panel">
+  <div class="section-title">Realistic Salary Roadmap — India & Remote</div>
+  <div class="info-box"><strong>Brutally Honest Numbers (2026, verified)</strong>These are realistic ranges for Hyderabad/Bangalore with the skills in this roadmap. Not LinkedIn brag posts — actual offer ranges based on current JD research.</div>
+  <div style="padding:8px 0">
+    <div class="salary-bar"><div class="salary-label">Intern / Fresher</div><div class="salary-fill" style="width:18%"></div><div class="salary-val">₹3–5 LPA</div></div>
+    <div class="salary-bar"><div class="salary-label">Junior ML (0–1 yr)</div><div class="salary-fill" style="width:30%"></div><div class="salary-val">₹5–9 LPA</div></div>
+    <div class="salary-bar"><div class="salary-label">ML Eng (1–2 yr)</div><div class="salary-fill" style="width:48%"></div><div class="salary-val">₹9–16 LPA</div></div>
+    <div class="salary-bar"><div class="salary-label">GenAI Specialist</div><div class="salary-fill" style="width:62%"></div><div class="salary-val">₹14–25 LPA</div></div>
+    <div class="salary-bar"><div class="salary-label">Remote USD (2+ yr)</div><div class="salary-fill" style="width:80%"></div><div class="salary-val">$40–80K/yr</div></div>
+    <div class="salary-bar"><div class="salary-label">Freelance AI Agent</div><div class="salary-fill" style="width:55%"></div><div class="salary-val">₹800–2500/hr</div></div>
+  </div>
+  <div class="warning-box"><strong>Reality Check on "3 Month Job" Goal</strong>3 months is possible for an ML intern or junior role at a startup — especially if your RAG/GenAI project is strong. For MNC/product company (Google, Microsoft, Flipkart ML teams), expect 6–9 months minimum preparation. For freelance AI automation income, 3 months is realistic if you aggressively build and market. Set the right expectation per goal.</div>
+  <div class="section-title" style="margin-top:16px">Resource Stack Summary</div>
+  <table class="tracker-table">
+    <tr><th>Category</th><th>Primary (Free)</th><th>Backup (Paid)</th></tr>
+    <tr><td>Math</td><td>3Blue1Brown, StatQuest</td><td>Gilbert Strang MIT OCW</td></tr>
+    <tr><td>ML Core</td><td>fast.ai, Kaggle Learn, Géron GitHub</td><td>Udemy ML A-Z (~$15)</td></tr>
+    <tr><td>Deep Learning</td><td>Karpathy YouTube, HuggingFace course</td><td>fast.ai Part 2</td></tr>
+    <tr><td>LLM/GenAI</td><td>deeplearning.ai short courses, LlamaIndex docs</td><td>LangChain Academy ($)</td></tr>
+    <tr><td>MLOps</td><td>FastAPI docs, play-with-docker.com, AWS free tier</td><td>MLOps Zoomcamp (free!)</td></tr>
+    <tr><td>Practice</td><td>Kaggle, GitHub, HF Spaces, Colab</td><td>Naukri premium (1 month)</td></tr>
+    <tr><td>Interview</td><td>NeetCode 75, StatQuest, Chip Huyen GitHub</td><td>Exponent, Ace DS Interview book</td></tr>
+  </table>
+</div>
+
+</div>
+
+<script>
+function switchPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const map={phases:0,schedule:1,tracker:2,projects:3,jobs:4,bonus:5,salary:6};
+  document.querySelectorAll('.nav-btn')[map[id]].classList.add('active');
+}
+function togglePhase(id){
+  const body=document.getElementById(id);
+  const chev=document.getElementById(id+'-chev');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  chev.style.transform=isOpen?'':'rotate(180deg)';
+}
+const checkItems=[
+  "GitHub profile with 5+ quality repos and READMEs",
+  "At least 1 deployed project with live public URL",
+  "RAG chatbot or AI agent demo deployed on HF Spaces",
+  "ATS-optimized 1-page resume with metrics (not duties)",
+  "LinkedIn headline updated with 'ML Engineer | GenAI | LLM'",
+  "Kaggle profile with at least 1 competition submission",
+  "Can explain every project decision in an interview",
+  "100+ GitHub commits showing consistency",
+  "Completed NeetCode 75 for coding rounds",
+  "Can answer: What is RAG? How does attention work? What is overfitting?",
+  "FastAPI + Docker deployment demonstrated in at least 1 project",
+  "20+ job applications sent per week target active",
+  "1 mock interview completed (Pramp or peer)",
+  "Freelance profiles set up (Upwork / Toptal) if freelance is the goal"
+];
+const cl=document.getElementById('checklist');
+if(cl){
+  checkItems.forEach((item,i)=>{
+    const div=document.createElement('div');
+    div.className='checklist-item';
+    div.innerHTML=`<div class="check-box" id="cb${i}" onclick="toggleCheck(${i})"></div><span>${item}</span>`;
+    cl.appendChild(div);
+  });
+}
+function toggleCheck(i){
+  const cb=document.getElementById('cb'+i);
+  cb.classList.toggle('done');
+  cb.textContent=cb.classList.contains('done')?'✓':'';
+}
+</script>
