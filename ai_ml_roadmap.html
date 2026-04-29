@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI/ML Master Roadmap 2026 — India & Remote</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060a10;
+  --surface:#0d1420;
+  --surface2:#111927;
+  --border:#1e2d42;
+  --border2:#243347;
+  --accent:#00d4ff;
+  --accent2:#7c3aed;
+  --accent3:#10b981;
+  --accent4:#f59e0b;
+  --accent5:#f43f5e;
+  --text:#e8f0fe;
+  --muted:#8ba3c0;
+  --dim:#4a6580;
+  --font-head:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;line-height:1.65;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.6}
+
+/* LAYOUT */
+.site-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(6,10,16,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.nav-logo{font-family:var(--font-head);font-weight:800;font-size:17px;color:var(--text);letter-spacing:-0.5px;white-space:nowrap}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{font-family:var(--font-mono);font-size:11px;color:var(--muted);padding:5px 10px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:all 0.15s;border:1px solid transparent;text-decoration:none}
+.nav-link:hover,.nav-link.active{color:var(--accent);background:rgba(0,212,255,0.07);border-color:rgba(0,212,255,0.2)}
+
+/* HERO */
+.hero{padding:80px 0 64px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at 50% 0%,black 30%,transparent 80%)}
+.hero-glow{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,212,255,0.12) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+h1{font-family:var(--font-head);font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px}
+h1 .hl{color:var(--accent)}
+h1 .hl2{color:var(--accent3)}
+.hero-sub{font-size:16px;color:var(--muted);max-width:580px;line-height:1.7;margin-bottom:32px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px}
+.htag{font-family:var(--font-mono);font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid var(--border2);color:var(--muted);background:var(--surface)}
+.htag.hot{border-color:rgba(0,212,255,0.3);color:var(--accent);background:rgba(0,212,255,0.05)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}
+.hstat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.hstat-num{font-family:var(--font-head);font-size:26px;font-weight:700;color:var(--accent)}
+.hstat-label{font-size:11px;color:var(--muted);margin-top:3px;font-family:var(--font-mono)}
+
+/* SECTION HEADERS */
+.section{padding:60px 0 20px}
+.section-eyebrow{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-family:var(--font-head);font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.5px;margin-bottom:6px}
+.section-sub{font-size:14px;color:var(--muted);margin-bottom:32px}
+
+/* PHASE TIMELINE */
+.phases{display:flex;flex-direction:column;gap:0}
+.phase{display:grid;grid-template-columns:48px 1fr;gap:0 20px;position:relative}
+.phase-line{display:flex;flex-direction:column;align-items:center;gap:0}
+.phase-dot{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;z-index:2}
+.phase-connector{width:2px;flex:1;min-height:20px;background:linear-gradient(var(--border2),var(--border))}
+.phase:last-child .phase-connector{display:none}
+.phase-content{padding-bottom:36px}
+.phase-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;cursor:pointer;padding:4px 0}
+.phase-num{font-family:var(--font-mono);font-size:10px;color:var(--dim);letter-spacing:1px}
+.phase-name{font-family:var(--font-head);font-size:19px;font-weight:700;letter-spacing:-0.3px}
+.phase-weeks{font-family:var(--font-mono);font-size:11px;padding:3px 10px;border-radius:6px;border:1px solid var(--border2);color:var(--muted);margin-left:auto;white-space:nowrap}
+.phase-body{display:none}
+.phase-body.open{display:block}
+
+/* TOGGLE BTN */
+.toggle-btn{background:none;border:1px solid var(--border2);border-radius:8px;color:var(--muted);font-size:13px;padding:5px 12px;cursor:pointer;font-family:var(--font-mono);transition:all 0.15s;margin-bottom:16px}
+.toggle-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* WEEK GRID */
+.week-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:20px}
+.week-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.week-label{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.week-tasks{font-size:12.5px;color:var(--muted);line-height:1.75}
+.week-tasks li{list-style:none;padding:1px 0}
+.week-tasks li::before{content:'→ ';color:var(--dim)}
+
+/* RESOURCE CARDS */
+.resources{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.res-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.15s}
+.res-card:hover{border-color:var(--border2)}
+.res-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.res-info{flex:1;min-width:0}
+.res-name{font-weight:500;font-size:13.5px;margin-bottom:2px;color:var(--text)}
+.res-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.res-link{font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;white-space:nowrap;padding:4px 10px;border:1px solid rgba(0,212,255,0.25);border-radius:6px;transition:all 0.15s;display:inline-block;margin-top:6px}
+.res-link:hover{background:rgba(0,212,255,0.1);border-color:var(--accent)}
+.res-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.rtag{font-size:10px;font-family:var(--font-mono);padding:2px 8px;border-radius:4px;font-weight:500}
+.rt-free{background:rgba(16,185,129,0.12);color:#6ee7b7;border:1px solid rgba(16,185,129,0.2)}
+.rt-fast{background:rgba(245,158,11,0.12);color:#fcd34d;border:1px solid rgba(245,158,11,0.2)}
+.rt-deep{background:rgba(0,212,255,0.08);color:#7dd3fc;border:1px solid rgba(0,212,255,0.2)}
+.rt-paid{background:rgba(244,63,94,0.1);color:#fda4af;border:1px solid rgba(244,63,94,0.2)}
+.rt-hot{background:rgba(124,58,237,0.12);color:#c4b5fd;border:1px solid rgba(124,58,237,0.3)}
+
+/* MILESTONE */
+.milestone{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:14px 18px;margin:16px 0}
+.milestone-head{font-family:var(--font-mono);font-size:10px;color:var(--accent3);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.milestone-head::before{content:'✓';width:16px;height:16px;background:var(--accent3);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:9px;color:#000}
+.milestone p{font-size:13px;color:#a7f3d0;line-height:1.6}
+
+/* WARN BOX */
+.warn-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:13px;color:#fde68a;line-height:1.6}
+.warn-box strong{display:block;font-family:var(--font-mono);font-size:10px;color:var(--accent4);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+
+/* INFO BOX */
+.info-box{background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:13px;color:#bae6fd;line-height:1.6}
+.info-box strong{display:block;font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+
+/* GPU BOX */
+.gpu-box{background:rgba(244,63,94,0.05);border:1px solid rgba(244,63,94,0.18);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:13px;color:#fecdd3;line-height:1.6}
+.gpu-box strong{display:block;font-family:var(--font-mono);font-size:10px;color:var(--accent5);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+
+/* PROJECT CARDS */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;transition:all 0.2s;position:relative;overflow:hidden}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent-proj,var(--accent)),transparent)}
+.proj-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.proj-num{font-family:var(--font-mono);font-size:10px;color:var(--dim);margin-bottom:8px}
+.proj-title{font-family:var(--font-head);font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:-0.2px}
+.proj-desc{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:12px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:5px}
+.proj-tag{font-family:var(--font-mono);font-size:10px;background:var(--surface2);border:1px solid var(--border2);border-radius:5px;padding:2px 8px;color:var(--muted)}
+.proj-badge{position:absolute;top:14px;right:14px;font-family:var(--font-mono);font-size:9px;padding:3px 8px;border-radius:4px;font-weight:500}
+
+/* TRACKER TABLE */
+.tracker-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{background:var(--surface2);padding:11px 14px;text-align:left;font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.5px;text-transform:uppercase;border-bottom:1px solid var(--border2)}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface2)}
+td:first-child{font-family:var(--font-mono);font-size:11px;color:var(--accent);white-space:nowrap}
+
+/* SALARY BARS */
+.salary-section{display:flex;flex-direction:column;gap:10px;margin:16px 0}
+.sal-row{display:flex;align-items:center;gap:12px}
+.sal-label{font-size:12px;color:var(--muted);min-width:140px;font-family:var(--font-mono)}
+.sal-bar-wrap{flex:1;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.sal-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,#0ea5e9,#00d4ff)}
+.sal-val{font-size:12px;font-weight:500;color:var(--text);font-family:var(--font-mono);min-width:110px;text-align:right}
+
+/* CHECKLIST */
+.checklist{display:flex;flex-direction:column;gap:6px}
+.cl-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all 0.15s;font-size:13px}
+.cl-item:hover{border-color:var(--border2)}
+.cl-item.checked{background:rgba(16,185,129,0.05);border-color:rgba(16,185,129,0.25)}
+.cl-item.checked .cl-text{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--dim)}
+.cl-box{width:18px;height:18px;border:1px solid var(--border2);border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.15s}
+.cl-item.checked .cl-box{background:var(--accent3);border-color:var(--accent3);color:#000}
+
+/* SKIP TAGS */
+.skip-list{display:flex;flex-direction:column;gap:8px}
+.skip-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;background:rgba(244,63,94,0.04);border:1px solid rgba(244,63,94,0.15);border-radius:8px;font-size:13px;color:#fecdd3}
+.skip-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.hot-list{display:flex;flex-direction:column;gap:8px}
+.hot-item{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.15);border-radius:8px;font-size:13px;color:var(--text)}
+.hot-rank{font-family:var(--font-mono);font-size:11px;color:var(--accent);background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap}
+
+/* TABS */
+.tab-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:12px}
+.tab-btn{font-family:var(--font-mono);font-size:11px;padding:6px 14px;border-radius:7px;background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;transition:all 0.15s}
+.tab-btn:hover{border-color:var(--border2);color:var(--text)}
+.tab-btn.active{background:rgba(0,212,255,0.1);border-color:rgba(0,212,255,0.3);color:var(--accent)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* PROGRESS GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
+.kpi-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.kpi-num{font-family:var(--font-head);font-size:28px;font-weight:800;color:var(--accent)}
+.kpi-label{font-size:11px;color:var(--muted);margin-top:4px;font-family:var(--font-mono)}
+
+/* RECOVERY */
+.recovery-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.rec-step{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.rec-day{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--accent4);margin-bottom:6px}
+.rec-text{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* FOOTER */
+footer{margin-top:60px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-family:var(--font-mono);font-size:11px;color:var(--dim)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp 0.5s ease forwards}
+
+@media(max-width:640px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .recovery-steps{grid-template-columns:1fr}
+  .week-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">AI/ML<span>.</span>Roadmap <span style="font-weight:300;opacity:0.5;font-size:13px">2026</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="#phases">Phases</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#tracker">Tracker</a>
+      <a class="nav-link" href="#checklist">Job Ready</a>
+      <a class="nav-link" href="#bonus">Bonus</a>
+      <a class="nav-link" href="#salary">Salary</a>
+    </div>
+  </div>
+</nav>
+
+<div class="site-wrap">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div style="position:relative;z-index:1">
+    <div class="hero-eyebrow">Personalized for Hyderabad, India — Remote Global Ready</div>
+    <h1>Your <span class="hl">AI/ML</span> Career<br>Roadmap to <span class="hl2">Job Ready</span></h1>
+    <p class="hero-sub">Built for Beginner→Intermediate with Python + SQL. Targeting ML Engineer, Freelance AI Automation & Product Companies. Adapted for weak math, GTX 1650, and 14hrs/week. Brutally realistic.</p>
+    <div class="hero-tags">
+      <span class="htag hot">90-Day Accelerated</span>
+      <span class="htag hot">Math-Weak Adapted</span>
+      <span class="htag hot">Free-First Resources</span>
+      <span class="htag">GTX 1650 Strategy</span>
+      <span class="htag">India Market Aware</span>
+      <span class="htag">2026 Trends</span>
+      <span class="htag">6 Phases • 24 Weeks</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">90</div><div class="hstat-label">day sprint</div></div>
+      <div class="hstat"><div class="hstat-num">6</div><div class="hstat-label">phases</div></div>
+      <div class="hstat"><div class="hstat-num">40+</div><div class="hstat-label">resources</div></div>
+      <div class="hstat"><div class="hstat-num">6</div><div class="hstat-label">projects</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section class="section" id="phases">
+  <div class="section-eyebrow">The Path</div>
+  <div class="section-title">6-Phase Learning Roadmap</div>
+  <div class="section-sub">Click any phase to expand the weekly breakdown, exact resources with links, and milestones.</div>
+
+  <div class="phases">
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(0,212,255,0.12);border:1px solid rgba(0,212,255,0.3)">📐</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph1')">
+          <div>
+            <div class="phase-num">PHASE 01</div>
+            <div class="phase-name">Foundation Boost</div>
+          </div>
+          <div class="phase-weeks">Weeks 1–3</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph1')" id="ph1-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph1">
+          <div class="warn-box"><strong>⚡ Adapted for Math-Weak Profile</strong>Skip epsilon-delta proofs. Focus on intuition: "what does a derivative tell me about a model?" Use 3Blue1Brown. Stop when you understand WHY, not HOW to prove it.</div>
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 1</div><ul class="week-tasks"><li>NumPy arrays & broadcasting</li><li>Pandas: groupby, merge, pivot</li><li>Matplotlib / Seaborn basics</li><li>Kaggle Titanic EDA practice</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 2</div><ul class="week-tasks"><li>Linear algebra intuition (vectors, dot product)</li><li>Stats: mean, variance, correlation, p-value</li><li>Apply stats on real datasets</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 3</div><ul class="week-tasks"><li>Calculus: derivatives as slopes, chain rule intuition</li><li>Probability: Bayes, distributions</li><li>SQL window functions review</li><li>Mini project: full EDA report</li></ul></div>
+          </div>
+          <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Exact Resources with Links</div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,0,0,0.1)">▶</div>
+              <div class="res-info">
+                <div class="res-name">Keith Galli — Complete Pandas Playlist</div>
+                <div class="res-desc">Best visual, project-based Pandas tutorial. Covers everything Week 1 needs in order. Avoid random tutorials.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.youtube.com/playlist?list=PL5-da3qGB5IBITZj_dYSFqnd_15JgqwA6" target="_blank">↗ youtube.com — Keith Galli Pandas</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">◉</div>
+              <div class="res-info">
+                <div class="res-name">3Blue1Brown — Essence of Linear Algebra</div>
+                <div class="res-desc">Animated, zero proof, pure visual intuition. Best resource in existence for math-weak learners. Watch before anything else.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" target="_blank">↗ youtube.com — 3B1B Linear Algebra</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">◉</div>
+              <div class="res-info">
+                <div class="res-name">3Blue1Brown — Essence of Calculus</div>
+                <div class="res-desc">Derivatives visualized as slopes. Chain rule shown geometrically. This is all you need for ML. 11-video series.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr" target="_blank">↗ youtube.com — 3B1B Calculus</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(16,185,129,0.1)">📊</div>
+              <div class="res-info">
+                <div class="res-name">StatQuest with Josh Starmer</div>
+                <div class="res-desc">ML-specific statistics. P-values, distributions, Bayes — all explained with funny visual emphasis. Perfect for this weakness.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.youtube.com/c/joshstarmer" target="_blank">↗ youtube.com/@statquest</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+              <div class="res-info">
+                <div class="res-name">Kaggle Learn — Pandas + Data Visualization</div>
+                <div class="res-desc">2–4 hour micro-courses with in-browser Jupyter notebooks. No setup. Instant feedback. Perfect for weekday 2hr blocks.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.kaggle.com/learn/pandas" target="_blank">↗ kaggle.com/learn/pandas</a>
+              </div>
+            </div>
+          </div>
+          <div class="milestone"><div class="milestone-head">Phase 1 Milestone</div><p>Complete 1 full EDA notebook on Kaggle Titanic or Heart Disease dataset. Push to GitHub with a proper README + 5 visualizations. This is your first portfolio item.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3)">🤖</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph2')">
+          <div><div class="phase-num">PHASE 02</div><div class="phase-name">Core ML</div></div>
+          <div class="phase-weeks">Weeks 4–7</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph2')" id="ph2-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph2">
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 4</div><ul class="week-tasks"><li>Linear & Logistic Regression</li><li>Decision Trees, Random Forest</li><li>Train/test split, cross-validation</li><li>Scikit-learn pipeline basics</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 5</div><ul class="week-tasks"><li>SVM, KNN, Naive Bayes</li><li>Feature Engineering: encoding, scaling, selection</li><li>Handling imbalanced data (SMOTE)</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 6</div><ul class="week-tasks"><li>XGBoost + LightGBM (industry standard)</li><li>Hyperparameter tuning: Optuna</li><li>Evaluation: AUC-ROC, F1, Precision/Recall</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 7</div><ul class="week-tasks"><li>Unsupervised: K-Means, DBSCAN, PCA</li><li>Enter a Kaggle competition</li><li>End-to-end churn prediction project</li></ul></div>
+          </div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">📖</div>
+              <div class="res-info">
+                <div class="res-name">Hands-On ML (Aurélien Géron) — Free GitHub Notebooks</div>
+                <div class="res-desc">Industry gold standard textbook. Chapters 1–8 cover this entire phase. All notebooks are free on GitHub. No need to buy the book first.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://github.com/ageron/handson-ml3" target="_blank">↗ github.com/ageron/handson-ml3</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+              <div class="res-info">
+                <div class="res-name">Kaggle Learn — Intro + Intermediate ML</div>
+                <div class="res-desc">Structured course covering decision trees, random forests, XGBoost, data leakage. Each lesson under 2 hours with practice.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.kaggle.com/learn/intro-to-machine-learning" target="_blank">↗ kaggle.com/learn/intro-to-ml</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,0,0,0.1)">▶</div>
+              <div class="res-info">
+                <div class="res-name">Krish Naik — Complete ML Playlist (YouTube)</div>
+                <div class="res-desc">India-specific explanations, Hindi/English mix, interview-oriented. Covers every algorithm with real project examples.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-hot">INDIA</span></div>
+                <a class="res-link" href="https://www.youtube.com/playlist?list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe" target="_blank">↗ youtube.com — Krish Naik ML</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(124,58,237,0.1)">⚡</div>
+              <div class="res-info">
+                <div class="res-name">fast.ai — Practical ML for Coders (Tabular)</div>
+                <div class="res-desc">Top-down approach, real data, avoids math overload. Ideal for your learning style. Chapter on tabular data is world-class.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://course.fast.ai" target="_blank">↗ course.fast.ai</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+              <div class="res-info">
+                <div class="res-name">Kaggle Dataset — Telco Customer Churn</div>
+                <div class="res-desc">Classic ML project dataset. Build churn predictor for your Phase 2 milestone. Loved by interviewers.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://www.kaggle.com/datasets/blastchar/telco-customer-churn" target="_blank">↗ kaggle.com/telco-churn-dataset</a>
+              </div>
+            </div>
+          </div>
+          <div class="milestone"><div class="milestone-head">Phase 2 Milestone</div><p>Full Churn Prediction: data cleaning → feature engineering → XGBoost → evaluation dashboard → save with joblib. GitHub README with AUC > 0.82. This alone gets you internship interviews in India.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3)">🧠</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph3')">
+          <div><div class="phase-num">PHASE 03</div><div class="phase-name">Deep Learning</div></div>
+          <div class="phase-weeks">Weeks 8–11</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph3')" id="ph3-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph3">
+          <div class="gpu-box"><strong>🖥️ GTX 1650 Strategy (4GB VRAM)</strong>Your GPU handles: small CNNs, LoRA fine-tuning, BERT inference. For large models use Google Colab T4 (free) or Kaggle Notebooks P100 (free). Do NOT run LLaMA-7B locally — use Colab or HuggingFace Inference API.</div>
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 8</div><ul class="week-tasks"><li>Neural networks from scratch (numpy)</li><li>Backpropagation intuition</li><li>PyTorch tensors + autograd</li><li>First MLP in PyTorch</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 9</div><ul class="week-tasks"><li>CNNs: Conv layers, pooling, batch norm</li><li>Transfer learning: EfficientNet/ResNet</li><li>Image classification project</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 10</div><ul class="week-tasks"><li>RNN/LSTM: sequence modeling</li><li>Attention mechanism intuition</li><li>Transformers overview (not full paper)</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 11</div><ul class="week-tasks"><li>HuggingFace Transformers library</li><li>BERT for text classification</li><li>Fine-tuning a small model</li><li>NLP project: sentiment analysis</li></ul></div>
+          </div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,0,0,0.1)">▶</div>
+              <div class="res-info">
+                <div class="res-name">Andrej Karpathy — "Neural Networks: Zero to Hero"</div>
+                <div class="res-desc">Best DL course on the internet in 2025–26. Builds GPT from scratch. Written by former Tesla AI Director and OpenAI co-founder. Legendary quality.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank">↗ youtube.com — Karpathy NN Zero to Hero</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(124,58,237,0.1)">⚡</div>
+              <div class="res-info">
+                <div class="res-name">fast.ai — Practical Deep Learning for Coders (Part 1)</div>
+                <div class="res-desc">Top-down, code-first, real datasets. Best DL course for practitioners. Only do Part 1 for now — saves 30+ hours over Part 2.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://course.fast.ai" target="_blank">↗ course.fast.ai</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,150,0,0.1)">🔥</div>
+              <div class="res-info">
+                <div class="res-name">PyTorch Official Tutorials</div>
+                <div class="res-desc">Start with 60-minute blitz. Directly from source, always updated for latest PyTorch. Covers tensors → autograd → training loop → CNNs.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank">↗ pytorch.org/tutorials</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,220,0,0.1)">🤗</div>
+              <div class="res-info">
+                <div class="res-name">HuggingFace NLP Course (Free + Certificate)</div>
+                <div class="res-desc">Industry standard for transformer usage. Covers tokenizers, fine-tuning BERT, deploying models. Free certificate. 2026 essential skill.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://huggingface.co/learn/nlp-course/chapter1/1" target="_blank">↗ huggingface.co/learn/nlp-course</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(245,158,11,0.1)">🏆</div>
+              <div class="res-info">
+                <div class="res-name">Kaggle — Chest X-Ray Pneumonia Dataset</div>
+                <div class="res-desc">Perfect for CNN transfer learning project. Binary classification. 5,000+ images. Used in Phase 3 milestone project.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia" target="_blank">↗ kaggle.com/chest-xray-pneumonia</a>
+              </div>
+            </div>
+          </div>
+          <div class="milestone"><div class="milestone-head">Phase 3 Milestone</div><p>Two deployed projects: (1) CNN image classifier with Grad-CAM visualization on HuggingFace Spaces. (2) BERT sentiment model fine-tuned and pushed to HuggingFace Hub. Both public, shareable links.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3)">🔮</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph4')">
+          <div><div class="phase-num">PHASE 04</div><div class="phase-name">LLMs & GenAI</div></div>
+          <div class="phase-weeks">Weeks 12–15</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph4')" id="ph4-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph4">
+          <div class="info-box"><strong>🔥 Highest ROI Phase — 2026 Market</strong>GenAI skills are the #1 differentiator in India tech hiring right now. Every company building internal AI tools needs RAG + Agents. This phase alone can get you freelance Upwork work within 60 days of completing it.</div>
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 12</div><ul class="week-tasks"><li>Prompt engineering: system prompts, few-shot, CoT</li><li>OpenAI API or Groq API (free tier)</li><li>Build a basic chatbot</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 13</div><ul class="week-tasks"><li>RAG architecture deep dive</li><li>Vector DBs: ChromaDB local + Pinecone</li><li>Embeddings: sentence-transformers</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 14</div><ul class="week-tasks"><li>LlamaIndex (preferred in 2026 over LangChain)</li><li>RAG chatbot over custom PDF docs</li><li>Streamlit / Gradio UI</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 15</div><ul class="week-tasks"><li>AI Agents: tool calling, function calling</li><li>LoRA fine-tuning on Colab (free)</li><li>Deploy on HuggingFace Spaces</li></ul></div>
+          </div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,180,216,0.1)">🎓</div>
+              <div class="res-info">
+                <div class="res-name">DeepLearning.AI Short Courses (Free Audit)</div>
+                <div class="res-desc">Andrew Ng + industry experts. "LangChain for LLM Dev", "Building RAG Systems", "AI Agents" — each 1–2 hrs. Free to audit. Industry gold standard.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.deeplearning.ai/short-courses/" target="_blank">↗ deeplearning.ai/short-courses</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(124,58,237,0.1)">📚</div>
+              <div class="res-info">
+                <div class="res-name">LlamaIndex Documentation + Cookbook</div>
+                <div class="res-desc">Better than LangChain for RAG in 2026. Cleaner API, actively maintained. Follow their RAG guide + starter templates. Cookbook has 50+ real examples.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://docs.llamaindex.ai/en/stable/" target="_blank">↗ docs.llamaindex.ai</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">⚡</div>
+              <div class="res-info">
+                <div class="res-name">Groq API — Free Tier (Fastest LLM Inference)</div>
+                <div class="res-desc">Fastest LLM inference available. Free quota (generous). Use instead of OpenAI for all prototyping — zero cost, supports LLaMA, Mixtral, Gemma.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-hot">HOT 2026</span></div>
+                <a class="res-link" href="https://console.groq.com" target="_blank">↗ console.groq.com</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,220,0,0.1)">🤗</div>
+              <div class="res-info">
+                <div class="res-name">HuggingFace PEFT — LoRA Fine-Tuning Docs</div>
+                <div class="res-desc">LoRA fine-tuning with minimal GPU. Can run on Colab T4 free. Official docs cover Llama/Mistral fine-tuning with under 4GB VRAM using QLoRA.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://huggingface.co/docs/peft/index" target="_blank">↗ huggingface.co/docs/peft</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(255,0,0,0.1)">▶</div>
+              <div class="res-info">
+                <div class="res-name">Sam Witteveen — LLM & LangChain Tutorials (YouTube)</div>
+                <div class="res-desc">Fastest practical LLM coding tutorials on YouTube. Updated constantly. Shows real-world RAG, agents, tools with working code every video.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://www.youtube.com/@samwitteveenai" target="_blank">↗ youtube.com/@samwitteveenai</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(16,185,129,0.1)">🗄️</div>
+              <div class="res-info">
+                <div class="res-name">ChromaDB — Local Vector Database (Free)</div>
+                <div class="res-desc">Free, local, open-source vector DB. No account needed. Perfect for RAG prototyping before moving to Pinecone for production.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://docs.trychroma.com/getting-started" target="_blank">↗ docs.trychroma.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="milestone"><div class="milestone-head">Phase 4 Flagship Milestone ⭐</div><p>RAG chatbot that answers questions over a custom knowledge base (your resume, company docs, or a legal PDF). Deployed live on HuggingFace Spaces with a shareable URL. This is the #1 portfolio project recruiters shortlist on in 2026.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3)">⚙️</div>
+        <div class="phase-connector"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph5')">
+          <div><div class="phase-num">PHASE 05</div><div class="phase-name">MLOps & Deployment</div></div>
+          <div class="phase-weeks">Weeks 16–19</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph5')" id="ph5-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph5">
+          <div class="warn-box"><strong>⚡ Scope Warning — Don't Overbuild</strong>Do NOT try to master full K8s + CI/CD + all 3 clouds. That's a DevOps career, not ML. Your goal: deploy 1 model end-to-end. "Kubernetes" on your resume means you've used minikube and understand concepts. That's enough for junior ML engineer roles.</div>
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 16</div><ul class="week-tasks"><li>FastAPI: serve ML model as REST API</li><li>Pydantic models, async endpoints</li><li>Test with Postman / curl</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 17</div><ul class="week-tasks"><li>Docker: containerize FastAPI app</li><li>docker-compose for multi-service</li><li>Push to Docker Hub</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 18</div><ul class="week-tasks"><li>AWS free tier: EC2, S3, Lambda basics</li><li>OR GCP Cloud Run (easier for ML)</li><li>Deploy Docker container to cloud</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 19</div><ul class="week-tasks"><li>MLflow for experiment tracking</li><li>GitHub Actions basic CI/CD</li><li>Full pipeline: train → track → deploy → monitor</li></ul></div>
+          </div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">🚀</div>
+              <div class="res-info">
+                <div class="res-name">FastAPI Official Documentation</div>
+                <div class="res-desc">Best docs in Python ecosystem. Interactive, complete, with ML serving examples. FastAPI is the 2026 standard for ML APIs — used at Netflix, Uber, Microsoft.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://fastapi.tiangolo.com/tutorial/" target="_blank">↗ fastapi.tiangolo.com/tutorial</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,150,255,0.1)">🐳</div>
+              <div class="res-info">
+                <div class="res-name">Play With Docker — Browser-based Docker Labs</div>
+                <div class="res-desc">Official Docker labs in-browser. No local install needed. Free playground with real Docker environment. Best way to learn Docker in 2026.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://labs.play-with-docker.com" target="_blank">↗ labs.play-with-docker.com</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(245,158,11,0.1)">☁️</div>
+              <div class="res-info">
+                <div class="res-name">MLOps Zoomcamp — Free Full Course</div>
+                <div class="res-desc">DataTalks.Club free MLOps course. Covers MLflow, Prefect, Docker, deployment end-to-end. Cohort-based but recordings free forever. 6-week curriculum.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://github.com/DataTalksClub/mlops-zoomcamp" target="_blank">↗ github.com/DataTalksClub/mlops-zoomcamp</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(16,185,129,0.1)">📈</div>
+              <div class="res-info">
+                <div class="res-name">MLflow Quickstart Guide</div>
+                <div class="res-desc">Industry standard for experiment tracking. 1-day to learn the basics. Integrates with scikit-learn, XGBoost, PyTorch. Free and open source.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://mlflow.org/docs/latest/quickstart.html" target="_blank">↗ mlflow.org/docs/latest/quickstart</a>
+              </div>
+            </div>
+          </div>
+          <div class="milestone"><div class="milestone-head">Phase 5 Milestone</div><p>One model fully deployed: FastAPI endpoint → Docker container → live on AWS/GCP free tier → GitHub Actions CI runs tests on push. This separates ML Engineer (you) from Data Scientist on job descriptions.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase">
+      <div class="phase-line">
+        <div class="phase-dot" style="background:rgba(244,63,94,0.12);border:1px solid rgba(244,63,94,0.3)">🎯</div>
+        <div class="phase-connector" style="display:none"></div>
+      </div>
+      <div class="phase-content">
+        <div class="phase-header" onclick="togglePhase('ph6')">
+          <div><div class="phase-num">PHASE 06</div><div class="phase-name">Portfolio & Job Ready</div></div>
+          <div class="phase-weeks">Weeks 20–24</div>
+        </div>
+        <button class="toggle-btn" onclick="togglePhase('ph6')" id="ph6-btn">▼ Expand Phase</button>
+        <div class="phase-body" id="ph6">
+          <div class="week-grid">
+            <div class="week-card"><div class="week-label">Week 20</div><ul class="week-tasks"><li>Polish all GitHub repos</li><li>Write READMEs with metrics + GIFs</li><li>Deploy 2 projects with public URLs</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 21</div><ul class="week-tasks"><li>Resume: 1-page ATS-optimized</li><li>LinkedIn rebuild with keywords</li><li>Start 20+ applications/week</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 22</div><ul class="week-tasks"><li>LeetCode Easy/Medium (NeetCode 75)</li><li>ML concept Q&A (100 Days of ML)</li><li>ML system design concepts</li></ul></div>
+            <div class="week-card"><div class="week-label">Week 23–24</div><ul class="week-tasks"><li>Mock interviews on Pramp</li><li>1 open source PR to HuggingFace repo</li><li>Upwork/Toptal freelance profile setup</li></ul></div>
+          </div>
+          <div class="resources">
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(0,212,255,0.1)">🎯</div>
+              <div class="res-info">
+                <div class="res-name">NeetCode 75 — Interview Coding Prep (Free)</div>
+                <div class="res-desc">Curated 75-problem LeetCode list. Covers all patterns needed for ML engineer coding rounds. Video explanations for each problem. Most efficient interview prep.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-fast">FAST</span></div>
+                <a class="res-link" href="https://neetcode.io/practice" target="_blank">↗ neetcode.io/practice</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(124,58,237,0.1)">📖</div>
+              <div class="res-info">
+                <div class="res-name">Chip Huyen — ML Interviews & System Design (GitHub)</div>
+                <div class="res-desc">Best resource for ML system design interviews. "Designing ML Systems" free chapters. Used by engineers at Google, Meta, Apple. Essential for product company prep.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span><span class="rtag rt-deep">DEEP</span></div>
+                <a class="res-link" href="https://github.com/chiphuyen/ml-interviews-book" target="_blank">↗ github.com/chiphuyen/ml-interviews-book</a>
+              </div>
+            </div>
+            <div class="res-card">
+              <div class="res-icon" style="background:rgba(16,185,129,0.1)">🤝</div>
+              <div class="res-info">
+                <div class="res-name">Pramp — Free Mock Interviews</div>
+                <div class="res-desc">Peer mock interviews platform. Free for ML, data science, and coding rounds. Match with other job-seekers for realistic practice. Better than doing it alone.</div>
+                <div class="res-tags"><span class="rtag rt-free">FREE</span></div>
+                <a class="res-link" href="https://www.pramp.com" target="_blank">↗ pramp.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end phases -->
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="section" id="projects">
+  <div class="section-eyebrow">Portfolio</div>
+  <div class="section-title">6-Project Progression Ladder</div>
+  <div class="section-sub">Quality over quantity. Each project builds on the previous. Every project needs: live demo + GitHub README + business value explanation in 2 sentences.</div>
+  <div class="project-grid">
+    <div class="proj-card" style="--accent-proj:#00d4ff">
+      <span class="proj-badge" style="background:rgba(0,212,255,0.15);color:var(--accent);border:1px solid rgba(0,212,255,0.3)">Week 3</span>
+      <div class="proj-num">PROJECT 01</div>
+      <div class="proj-title">EDA Storytelling Report</div>
+      <div class="proj-desc">Deep analysis on India Air Quality or IPL stats. Find 5 non-obvious insights. Write it like a data journalist. This trains the most underrated skill: communication of findings.</div>
+      <div class="proj-stack"><span class="proj-tag">Pandas</span><span class="proj-tag">Seaborn</span><span class="proj-tag">Matplotlib</span><span class="proj-tag">Jupyter</span><span class="proj-tag">GitHub</span></div>
+    </div>
+    <div class="proj-card" style="--accent-proj:#10b981">
+      <span class="proj-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3)">Week 7</span>
+      <div class="proj-num">PROJECT 02</div>
+      <div class="proj-title">Customer Churn Predictor</div>
+      <div class="proj-desc">End-to-end: data ingestion → feature engineering → XGBoost model → Streamlit dashboard showing feature importance. Include a business recommendation section.</div>
+      <div class="proj-stack"><span class="proj-tag">XGBoost</span><span class="proj-tag">Scikit-learn</span><span class="proj-tag">Optuna</span><span class="proj-tag">Streamlit</span><span class="proj-tag">joblib</span></div>
+    </div>
+    <div class="proj-card" style="--accent-proj:#f59e0b">
+      <span class="proj-badge" style="background:rgba(245,158,11,0.15);color:#fcd34d;border:1px solid rgba(245,158,11,0.3)">Week 9</span>
+      <div class="proj-num">PROJECT 03</div>
+      <div class="proj-title">Disease Detection from X-Rays</div>
+      <div class="proj-desc">Pneumonia/normal classifier using chest X-ray data. EfficientNet transfer learning. Grad-CAM to show model attention. Deployed on HuggingFace Spaces with live demo.</div>
+      <div class="proj-stack"><span class="proj-tag">PyTorch</span><span class="proj-tag">EfficientNet</span><span class="proj-tag">Grad-CAM</span><span class="proj-tag">Gradio</span><span class="proj-tag">HF Spaces</span></div>
+    </div>
+    <div class="proj-card" style="--accent-proj:#f43f5e">
+      <span class="proj-badge" style="background:rgba(244,63,94,0.2);color:#fda4af;border:1px solid rgba(244,63,94,0.4);font-weight:700">⭐ FLAGSHIP — Week 14</span>
+      <div class="proj-num">PROJECT 04</div>
+      <div class="proj-title">RAG Legal / Research Assistant</div>
+      <div class="proj-desc">Upload any PDF → ask questions → get accurate answers with source citations. LlamaIndex + ChromaDB + Groq API. Streamlit UI with live deployment. The #1 recruiter magnet in 2026.</div>
+      <div class="proj-stack"><span class="proj-tag">LlamaIndex</span><span class="proj-tag">ChromaDB</span><span class="proj-tag">Groq API</span><span class="proj-tag">Streamlit</span><span class="proj-tag">HF Spaces</span></div>
+    </div>
+    <div class="proj-card" style="--accent-proj:#7c3aed">
+      <span class="proj-badge" style="background:rgba(124,58,237,0.15);color:#c4b5fd;border:1px solid rgba(124,58,237,0.3)">Week 15</span>
+      <div class="proj-num">PROJECT 05</div>
+      <div class="proj-title">AI Automation Agent</div>
+      <div class="proj-desc">Multi-tool agent: web search, run Python, write emails, summarize docs. Built with LangGraph. Exactly what businesses pay ₹800–2500/hr for on Upwork. Your freelance entry ticket.</div>
+      <div class="proj-stack"><span class="proj-tag">LangGraph</span><span class="proj-tag">Tool Calling</span><span class="proj-tag">FastAPI</span><span class="proj-tag">LLM</span><span class="proj-tag">React UI</span></div>
+    </div>
+    <div class="proj-card" style="--accent-proj:#10b981">
+      <span class="proj-badge" style="background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3)">Week 19</span>
+      <div class="proj-num">PROJECT 06</div>
+      <div class="proj-title">Production ML API (Full MLOps)</div>
+      <div class="proj-desc">Churn model → FastAPI → Docker → AWS/GCP deployment → MLflow tracking → GitHub Actions CI. Full MLOps cycle documented in README. Separates you from 90% of applicants.</div>
+      <div class="proj-stack"><span class="proj-tag">FastAPI</span><span class="proj-tag">Docker</span><span class="proj-tag">MLflow</span><span class="proj-tag">AWS/GCP</span><span class="proj-tag">GitHub Actions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER -->
+<section class="section" id="tracker">
+  <div class="section-eyebrow">Progress</div>
+  <div class="section-title">Weekly & Monthly Tracker</div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-num">90</div><div class="kpi-label">day job sprint</div></div>
+    <div class="kpi-card"><div class="kpi-num">20+</div><div class="kpi-label">apps/week from month 3</div></div>
+    <div class="kpi-card"><div class="kpi-num">100+</div><div class="kpi-label">github commits target</div></div>
+    <div class="kpi-card"><div class="kpi-num">6</div><div class="kpi-label">deployed projects min</div></div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('weekly')">Weekly Tracker</button>
+    <button class="tab-btn" onclick="switchTab('monthly')">Monthly KPIs</button>
+    <button class="tab-btn" onclick="switchTab('resources')">Resource Stack</button>
+  </div>
+  <div class="tab-panel active" id="weekly">
+    <div class="tracker-wrap">
+      <table>
+        <thead><tr><th>Week</th><th>Phase</th><th>Deliverable</th><th>Success Metric</th></tr></thead>
+        <tbody>
+          <tr><td>1–2</td><td>Foundation</td><td>NumPy/Pandas fluency</td><td>Complete 3 Kaggle exercises</td></tr>
+          <tr><td>3</td><td>Foundation</td><td>EDA project on GitHub</td><td>README + 5 visualizations live</td></tr>
+          <tr><td>4–5</td><td>Core ML</td><td>Scikit-learn pipeline built</td><td>Can explain train/test/CV to anyone</td></tr>
+          <tr><td>6–7</td><td>Core ML</td><td>XGBoost churn model</td><td>AUC > 0.82, pushed to GitHub</td></tr>
+          <tr><td>8–9</td><td>Deep Learning</td><td>CNN image classifier</td><td>Deployed on HuggingFace Spaces</td></tr>
+          <tr><td>10–11</td><td>Deep Learning</td><td>BERT sentiment analysis</td><td>Fine-tuned model on HF Hub</td></tr>
+          <tr><td>12–13</td><td>LLM/GenAI</td><td>RAG chatbot built</td><td>Correctly answers 10 domain Q&As</td></tr>
+          <tr><td>14–15</td><td>LLM/GenAI</td><td>RAG + Agent deployed live</td><td>Public URL shareable with recruiters</td></tr>
+          <tr><td>16–17</td><td>MLOps</td><td>FastAPI + Docker app</td><td>Docker image on Docker Hub</td></tr>
+          <tr><td>18–19</td><td>MLOps</td><td>Cloud deployment</td><td>App live on AWS/GCP free tier</td></tr>
+          <tr><td>20–21</td><td>Portfolio</td><td>Resume + LinkedIn live</td><td>First 20 applications sent</td></tr>
+          <tr><td>22–24</td><td>Job Hunt</td><td>Interviews active</td><td>3+ interview calls landed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-panel" id="monthly">
+    <div class="tracker-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Technical KPIs</th><th>Career KPIs</th><th>Consistency KPIs</th></tr></thead>
+        <tbody>
+          <tr><td>Month 1</td><td>Master NumPy, Pandas, Scikit-learn basics</td><td>1 project on GitHub, LinkedIn updated</td><td>25+ commits, 0 missed weeks</td></tr>
+          <tr><td>Month 2</td><td>DL models built, BERT fine-tuned, RAG prototype</td><td>3 projects live with HF Spaces demos</td><td>60+ commits, 2 LinkedIn posts/week</td></tr>
+          <tr><td>Month 3</td><td>Full MLOps pipeline, deployed app, system design basics</td><td>60+ resumes sent, 5+ responses</td><td>100+ commits, 1 open source PR</td></tr>
+          <tr><td>Month 4–6</td><td>Interview-level ML system design</td><td>Offer in hand OR first freelance client</td><td>Keep building, 1 blog post/month</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-panel" id="resources">
+    <div class="tracker-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Primary (Free) + Link</th><th>Backup Option</th></tr></thead>
+        <tbody>
+          <tr><td>Math</td><td><a href="https://www.youtube.com/c/3blue1brown" target="_blank" style="color:var(--accent)">3Blue1Brown</a>, <a href="https://www.youtube.com/c/joshstarmer" target="_blank" style="color:var(--accent)">StatQuest</a></td><td>Gilbert Strang MIT OCW</td></tr>
+          <tr><td>ML Core</td><td><a href="https://course.fast.ai" target="_blank" style="color:var(--accent)">fast.ai</a>, <a href="https://www.kaggle.com/learn" target="_blank" style="color:var(--accent)">Kaggle Learn</a>, <a href="https://github.com/ageron/handson-ml3" target="_blank" style="color:var(--accent)">Géron GitHub</a></td><td>Udemy ML A-Z (~$15)</td></tr>
+          <tr><td>Deep Learning</td><td><a href="https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ" target="_blank" style="color:var(--accent)">Karpathy YouTube</a>, <a href="https://huggingface.co/learn/nlp-course" target="_blank" style="color:var(--accent)">HuggingFace Course</a></td><td>fast.ai Part 2</td></tr>
+          <tr><td>LLM/GenAI</td><td><a href="https://www.deeplearning.ai/short-courses/" target="_blank" style="color:var(--accent)">DeepLearning.AI</a>, <a href="https://docs.llamaindex.ai" target="_blank" style="color:var(--accent)">LlamaIndex Docs</a></td><td>LangChain Academy</td></tr>
+          <tr><td>MLOps</td><td><a href="https://fastapi.tiangolo.com" target="_blank" style="color:var(--accent)">FastAPI Docs</a>, <a href="https://github.com/DataTalksClub/mlops-zoomcamp" target="_blank" style="color:var(--accent)">MLOps Zoomcamp</a></td><td>Coursera MLOps (Andrew Ng)</td></tr>
+          <tr><td>Practice</td><td><a href="https://www.kaggle.com" target="_blank" style="color:var(--accent)">Kaggle</a>, <a href="https://huggingface.co/spaces" target="_blank" style="color:var(--accent)">HF Spaces</a>, <a href="https://colab.research.google.com" target="_blank" style="color:var(--accent)">Google Colab</a></td><td>Paperspace Gradient</td></tr>
+          <tr><td>Interview</td><td><a href="https://neetcode.io" target="_blank" style="color:var(--accent)">NeetCode 75</a>, <a href="https://github.com/chiphuyen/ml-interviews-book" target="_blank" style="color:var(--accent)">Chip Huyen GitHub</a></td><td>Ace DS Interview (book)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- JOB READY CHECKLIST -->
+<section class="section" id="checklist">
+  <div class="section-eyebrow">Hiring Preparation</div>
+  <div class="section-title">Job-Ready Checklist</div>
+  <div class="section-sub">Click to check off items as you complete them. Track your readiness.</div>
+  <div class="checklist" id="cl-container"></div>
+</section>
+
+<!-- BONUS -->
+<section class="section" id="bonus">
+  <div class="section-eyebrow">Insights</div>
+  <div class="section-title">Bonus Sections</div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('skip')">What to Skip</button>
+    <button class="tab-btn" onclick="switchTab('hotroi')">Highest ROI Skills</button>
+    <button class="tab-btn" onclick="switchTab('mistakes')">Common Mistakes</button>
+    <button class="tab-btn" onclick="switchTab('india')">India + Global Edge</button>
+    <button class="tab-btn" onclick="switchTab('recovery')">Recovery Plan</button>
+  </div>
+  <div class="tab-panel active" id="skip">
+    <div class="skip-list">
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>TensorFlow 1.x / early TF 2.x</strong> — Dead in new projects. PyTorch dominates research + production in 2026. Do TF only if a specific job requires it.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>Kubernetes deep dive</strong> — You need "can deploy with K8s + minikube understanding." CKA certification is a DevOps career path, not ML engineer fresher.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>R programming</strong> — Python handles everything. R is niche (academia, biostat only). Zero ROI for your goals in 2026.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>MATLAB</strong> — Completely irrelevant in Python-first ML world. Nobody asks for it in industry JDs anymore.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>Full Apache Spark</strong> — PySpark basics is fine. Full Spark engineering is a Data Engineering track, not ML. Don't spend weeks here.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>Tutorial hell</strong> — Watching 50 videos without building. Max ratio: 1hr watching = 2hrs building. No exceptions.</div></div>
+      <div class="skip-item"><span class="skip-icon">✕</span><div><strong>Learning LangChain + LlamaIndex together</strong> — Pick one. LlamaIndex is cleaner for RAG in 2026. Learn it deeply, not both shallowly.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="hotroi">
+    <div class="hot-list">
+      <div class="hot-item"><span class="hot-rank">#1 HOT</span><div><strong>RAG + LlamaIndex/LangChain</strong> — Every company building internal AI tools needs this. 6-month demand trend still growing. Gets you freelance clients fast.</div></div>
+      <div class="hot-item"><span class="hot-rank">#2 HOT</span><div><strong>AI Agents + Tool Calling</strong> — Agentic AI is the 2026 buzzword with real demand. LangGraph, CrewAI skills = premium ₹18–30 LPA range at startups.</div></div>
+      <div class="hot-item"><span class="hot-rank">#3 HOT</span><div><strong>MLOps (FastAPI + Docker + MLflow)</strong> — ML engineers who can deploy are 40% rarer than those who only model. Instantly separates you in interviews.</div></div>
+      <div class="hot-item"><span class="hot-rank">#4 HOT</span><div><strong>LoRA / QLoRA Fine-tuning</strong> — Domain-specific models are a goldmine for enterprises. Skill is accessible on Colab. High barrier in perception, low in reality.</div></div>
+      <div class="hot-item"><span class="hot-rank">#5 HOT</span><div><strong>Multimodal AI (text + image)</strong> — GPT-4V, LLaVA, CLIP. Growing fast, few practitioners trained yet. Early mover advantage right now in 2026.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="mistakes">
+    <div class="hot-list">
+      <div class="hot-item"><span class="hot-rank" style="color:#fda4af;background:rgba(244,63,94,0.1);border-color:rgba(244,63,94,0.25)">AVOID</span><div><strong>10 toy notebooks, 0 deployed demos</strong> — Recruiters open your GitHub, see 10 .ipynb files with no live links, and close. Every project needs a URL they can click.</div></div>
+      <div class="hot-item"><span class="hot-rank" style="color:#fda4af;background:rgba(244,63,94,0.1);border-color:rgba(244,63,94,0.25)">AVOID</span><div><strong>Ignoring math entirely</strong> — You need intuition, not proofs. 20% understanding = 80% ML productivity. Can you explain what gradient descent is doing? That's enough.</div></div>
+      <div class="hot-item"><span class="hot-rank" style="color:#fda4af;background:rgba(244,63,94,0.1);border-color:rgba(244,63,94,0.25)">AVOID</span><div><strong>Skipping GitHub commits</strong> — Every day without a commit is a missed social signal. Green contribution squares on GitHub are your silent resume before anyone reads a word.</div></div>
+      <div class="hot-item"><span class="hot-rank" style="color:#fda4af;background:rgba(244,63,94,0.1);border-color:rgba(244,63,94,0.25)">AVOID</span><div><strong>Applying too late</strong> — Start applying at Week 20 regardless of how ready you feel. The application + interview process itself teaches you what to study next.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="india">
+    <div class="hot-list">
+      <div class="hot-item"><span class="hot-rank">INDIA</span><div><strong>Post 1 LinkedIn project update/week</strong> — Indian tech community is highly active on LinkedIn. Visibility = inbound recruiter messages. Show what you built, not just that you're "learning".</div></div>
+      <div class="hot-item"><span class="hot-rank">INDIA</span><div><strong>Target AI startups over MNCs first</strong> — Hyderabad/Bangalore AI startups pay ₹6–12L for freshers with strong portfolio. Faster growth, more ownership than TCS/Infosys entry tracks.</div></div>
+      <div class="hot-item"><span class="hot-rank">INDIA</span><div><strong>Get referrals aggressively</strong> — 60% of India tech jobs are filled via referrals. Join iNeuron Discord, Analytics Vidhya community, Bangalore AI meetups. One connection = shortcut past 500 applications.</div></div>
+      <div class="hot-item"><span class="hot-rank">GLOBAL</span><div><strong>Contribute to open source</strong> — 1 merged PR to HuggingFace, LlamaIndex, or scikit-learn shows up in your profile and signals global readiness. Even fixing docs counts.</div></div>
+      <div class="hot-item"><span class="hot-rank">GLOBAL</span><div><strong>Get a Kaggle rank (any)</strong> — Top 25% in a competition is enough. Add it to resume. Kaggle rank = international credibility with no interview needed. Recognized globally.</div></div>
+      <div class="hot-item"><span class="hot-rank">FREELANCE</span><div><strong>Target "AI Automation" gigs on Upwork</strong> — Search this keyword. Businesses want RAG chatbots, AI agents for internal workflows. ₹800–2500/hr is realistic with Phase 4 skills + Phase 5 deployment ability.</div></div>
+    </div>
+  </div>
+  <div class="tab-panel" id="recovery">
+    <div class="warn-box"><strong>The 72-Hour Reset Protocol</strong>Procrastination hit and you fell off? This is the only protocol you need. Do not try to catch up. Do not restart from the beginning. Resume guilt kills more careers than missing days.</div>
+    <div class="recovery-steps">
+      <div class="rec-step"><div class="rec-day">Day 1</div><div class="rec-text">Open GitHub. Make 1 tiny commit. Any file edit. Zero pressure. Just restore the habit of opening the laptop.</div></div>
+      <div class="rec-step"><div class="rec-day">Day 2</div><div class="rec-text">Watch 1 video from exactly where you left off. Don't go back. Don't review. Forward only.</div></div>
+      <div class="rec-step"><div class="rec-day">Day 3</div><div class="rec-text">Build something small. 30 minutes minimum. Commit it. You are now back on track. Restart here, not Week 1.</div></div>
+    </div>
+    <div class="info-box" style="margin-top:16px"><strong>The Iron Rule</strong>Never miss two days in a row. Miss 1 day = fine, life happens. Miss 2 days = emergency reset protocol. Miss 3+ days = you've already started the protocol wrong. The streak is not about perfection. It's about never letting the gap grow.</div>
+  </div>
+</section>
+
+<!-- SALARY -->
+<section class="section" id="salary">
+  <div class="section-eyebrow">Compensation Reality</div>
+  <div class="section-title">Salary Roadmap — Brutally Honest</div>
+  <div class="section-sub">Verified 2026 ranges for Hyderabad/Bangalore. Not LinkedIn brag posts — actual offer ranges.</div>
+  <div class="warn-box"><strong>Reality Check on "3-Month Job" Goal</strong>3 months is possible for ML intern or junior startup role — especially if your RAG/GenAI project is strong and your GitHub is active. For MNC/product company (Google, Microsoft, Flipkart ML teams), budget 6–9 months. For freelance AI automation income, 3 months is realistic if you build + market aggressively.</div>
+  <div class="salary-section">
+    <div class="sal-row"><div class="sal-label">Intern / Fresher</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:18%"></div></div><div class="sal-val">₹3–5 LPA</div></div>
+    <div class="sal-row"><div class="sal-label">Junior ML (0–1yr)</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:32%"></div></div><div class="sal-val">₹5–9 LPA</div></div>
+    <div class="sal-row"><div class="sal-label">ML Engineer (1–2yr)</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:52%"></div></div><div class="sal-val">₹9–16 LPA</div></div>
+    <div class="sal-row"><div class="sal-label">GenAI Specialist</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:68%;background:linear-gradient(90deg,#7c3aed,#a855f7)"></div></div><div class="sal-val">₹14–25 LPA</div></div>
+    <div class="sal-row"><div class="sal-label">Remote USD (2+yr)</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:82%;background:linear-gradient(90deg,#0ea5e9,#38bdf8)"></div></div><div class="sal-val">$40–80K/yr</div></div>
+    <div class="sal-row"><div class="sal-label">Freelance AI Agents</div><div class="sal-bar-wrap"><div class="sal-bar" style="width:60%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div><div class="sal-val">₹800–2500/hr</div></div>
+  </div>
+</section>
+
+<footer>
+  <div style="margin-bottom:6px">Built for Hyderabad → Remote Global · AI/ML Roadmap 2026 · Free Resources Priority</div>
+  <div>Resources verified as of 2026 · All linked resources are free unless tagged PAID · Your GTX 1650 + Colab T4 = everything you need</div>
+</footer>
+
+</div><!-- end site-wrap -->
+
+<script>
+function togglePhase(id){
+  const body=document.getElementById(id);
+  const btn=document.getElementById(id+'-btn');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  btn.textContent=isOpen?'▼ Expand Phase':'▲ Collapse Phase';
+}
+function switchTab(id){
+  const tabPanels=document.querySelectorAll('.tab-panel');
+  const tabBtns=document.querySelectorAll('.tab-btn');
+  tabPanels.forEach(p=>p.classList.remove('active'));
+  tabBtns.forEach(b=>b.classList.remove('active'));
+  const target=document.getElementById(id);
+  if(target) target.classList.add('active');
+  event.target.classList.add('active');
+}
+const checks=[
+  "GitHub profile with 5+ quality repos and proper READMEs",
+  "At least 1 project deployed with a live public URL",
+  "RAG chatbot or AI agent demo live on HuggingFace Spaces",
+  "ATS-optimized 1-page resume with metrics (not just duties)",
+  "LinkedIn headline: 'ML Engineer | GenAI | LLM | Python'",
+  "Kaggle profile with at least 1 competition submission (any rank)",
+  "Can explain every project decision in detail under interview pressure",
+  "100+ GitHub commits showing sustained consistency",
+  "Completed NeetCode 75 for ML engineer coding rounds",
+  "Can answer: What is RAG? How does attention work? What is overfitting?",
+  "FastAPI + Docker deployment demonstrated in at least 1 project",
+  "20+ job applications per week target is active",
+  "At least 1 mock interview completed (Pramp or peer)",
+  "Upwork/Toptal profile set up if freelance is the goal"
+];
+const container=document.getElementById('cl-container');
+checks.forEach((text,i)=>{
+  const div=document.createElement('div');
+  div.className='cl-item';
+  div.id='cl-'+i;
+  div.innerHTML=`<div class="cl-box" id="clb-${i}"></div><div class="cl-text">${text}</div>`;
+  div.onclick=()=>{
+    div.classList.toggle('checked');
+    const box=document.getElementById('clb-'+i);
+    box.textContent=div.classList.contains('checked')?'✓':'';
+  };
+  container.appendChild(div);
+});
+// Highlight active nav link on scroll
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-link');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(l=>l.classList.remove('active'));
+      const active=document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+      if(active) active.classList.add('active');
+    }
+  });
+},{threshold:0.3});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
